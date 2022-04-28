@@ -1,4 +1,4 @@
-package com.bcs.vanaToit;
+package com.bcs.vanaToit.user;
 
 import javax.persistence.*;
 

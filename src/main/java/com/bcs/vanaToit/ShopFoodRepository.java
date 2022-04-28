@@ -2,5 +2,5 @@ package com.bcs.vanaToit;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ContactRepository extends JpaRepository<Contact, Integer> {
+public interface ShopFoodRepository extends JpaRepository<ShopFood, Integer> {
 }

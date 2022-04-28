@@ -1,7 +1,5 @@
 package com.bcs.vanaToit.user;
 
-import com.bcs.vanaToit.Contact;
-
 import javax.persistence.*;
 
 @Entity
