@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public class FoodService {
 
 
-    public void addArticle(ArticleRequest articleRequest) {
+    public void addArticle(ArticleRequest request) {
 
     }
 }
