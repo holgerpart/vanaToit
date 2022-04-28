@@ -20,9 +20,9 @@ INSERT INTO public.role (id, role) VALUES (DEFAULT, 'shop')
 INSERT INTO public.city (id, name) VALUES (DEFAULT, 'Tallinn')
 INSERT INTO public.city (id, name) VALUES (DEFAULT, 'Tartu')
 
-INSERT INTO public."user" (id, name, password, contact_id) VALUES (DEFAULT, 'sanderarusoo', 'parool', 3)
-INSERT INTO public."user" (id, name, password, contact_id) VALUES (DEFAULT, 'sannu', 'salasõna', 4)
-INSERT INTO public."user" (id, name, password, contact_id) VALUES (DEFAULT, 'miku', 'qwerty', 5)
+INSERT INTO public."user" (id, name, password, contact_id) VALUES (DEFAULT, 'sanderarusoo', 'parool', 1)
+INSERT INTO public."user" (id, name, password, contact_id) VALUES (DEFAULT, 'sannu', 'salasõna', 2)
+INSERT INTO public."user" (id, name, password, contact_id) VALUES (DEFAULT, 'miku', 'qwerty', 3)
 
 INSERT INTO public.type (id, name) VALUES (DEFAULT, 'kuivaine')
 INSERT INTO public.type (id, name) VALUES (DEFAULT, 'puuvili')
@@ -46,8 +46,8 @@ INSERT INTO public.shop_food_log (id, shop_id, food_id, quantity, unit_id, date_
 INSERT INTO public.authorized_user (id, user_id, shop_id) VALUES (DEFAULT, 1, 1)
 INSERT INTO public.authorized_user (id, user_id, shop_id) VALUES (DEFAULT, 2, 2)
 
-INSERT INTO public.book_food (id, user_id, shop_food_id, quanity, status_id) VALUES (DEFAULT, 5, 6, 2, 3)
-INSERT INTO public.book_food (id, user_id, shop_food_id, quanity, status_id) VALUES (DEFAULT, 3, 2, 5, 3)
+INSERT INTO public.book_food (id, user_id, shop_food_id, quantity, status_id) VALUES (DEFAULT, 1, 1, 2, 3)
+INSERT INTO public.book_food (id, user_id, shop_food_id, quantity, status_id) VALUES (DEFAULT, 2, 2, 5, 3)
 
-INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 5, 1)
-INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 3, 2)
+INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 1, 1)
+INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 2, 2)

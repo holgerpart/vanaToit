@@ -15,7 +15,7 @@ CREATE TABLE book_food (
     id serial  NOT NULL,
     user_id int  NOT NULL,
     shop_food_id int  NOT NULL,
-    quanity int  NOT NULL,
+    quantity int  NOT NULL,
     status_id int  NOT NULL,
     CONSTRAINT book_food_pk PRIMARY KEY (id)
 );
@@ -79,7 +79,7 @@ CREATE TABLE shop_food (
     is_available boolean  NOT NULL,
     date_time timestamp  NOT NULL,
     expiration_date date  NULL,
-    comments varchar(1000)  NOT NULL,
+    comments varchar(1000)   NULL,
     CONSTRAINT shop_food_pk PRIMARY KEY (id)
 );
 
