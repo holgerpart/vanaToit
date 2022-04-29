@@ -1,5 +1,6 @@
 package com.bcs.vanaToit.service.login;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ public class LoginController {
     @Resource
     private LoginService loginService;
 
+    @PostMapping
     public LoginResponse logIn(@RequestBody LoginRequest request) {
         return loginService.logIn(request);
     }

@@ -5,11 +5,13 @@ import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.domain.user.user.UserService;
 import com.bcs.vanaToit.domain.user.userrole.UserRole;
 import com.bcs.vanaToit.domain.user.userrole.UserRoleService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class LoginService {
 
     @Resource
