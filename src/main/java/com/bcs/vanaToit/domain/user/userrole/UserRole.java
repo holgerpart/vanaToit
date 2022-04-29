@@ -1,6 +1,6 @@
 package com.bcs.vanaToit.domain.user.userrole;
 
-import com.bcs.vanaToit.domain.user.Role;
+import com.bcs.vanaToit.domain.user.role.Role;
 import com.bcs.vanaToit.domain.user.user.User;
 
 import javax.persistence.*;

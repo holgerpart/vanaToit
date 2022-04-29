@@ -41,4 +41,9 @@ public class LoginService {
         }
         return userRoleIds;
     }
+
+    public UserResponse addUser(UserRequest request) {
+        return userService.addUser(request);
+
+    }
 }

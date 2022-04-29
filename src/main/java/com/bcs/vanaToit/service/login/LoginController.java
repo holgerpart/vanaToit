@@ -18,4 +18,10 @@ public class LoginController {
         return loginService.logIn(request);
     }
 
+    @PostMapping("/user")
+    public UserResponse addUser(@RequestBody UserRequest request) {
+        return loginService.addUser(request);
+
+    }
+
 }

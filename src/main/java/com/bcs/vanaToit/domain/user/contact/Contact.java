@@ -1,4 +1,4 @@
-package com.bcs.vanaToit.domain.user;
+package com.bcs.vanaToit.domain.user.contact;
 
 import javax.persistence.*;
 
