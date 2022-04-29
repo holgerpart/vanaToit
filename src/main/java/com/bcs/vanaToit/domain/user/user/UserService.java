@@ -49,6 +49,7 @@ public class UserService {
         userRoleService.addUserRole(request);
         UserResponse userResponse = new UserResponse();
         userResponse.setUserName(username);
+        userResponse.setRole(request.getRole());
         return userResponse;
     }
 }
