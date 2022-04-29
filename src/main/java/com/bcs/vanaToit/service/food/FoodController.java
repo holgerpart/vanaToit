@@ -1,9 +1,7 @@
 package com.bcs.vanaToit.service.food;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -14,7 +12,9 @@ public class FoodController {
     @Resource
     private FoodService foodService;
 
-    public void addArticle(@RequestParam ArticleRequest request) {
+    @PostMapping
+    @Operation(summary = "Artikli lisamine")
+    public void addArticle(@RequestBody ArticleRequest request) {
         foodService.addArticle(request);
     }
 
