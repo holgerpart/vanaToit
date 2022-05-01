@@ -2,12 +2,16 @@ package com.bcs.vanaToit.domain.shopfood;
 
 import com.bcs.vanaToit.domain.food.food.FoodRepository;
 import com.bcs.vanaToit.domain.food.unit.UnitRepository;
+import com.bcs.vanaToit.domain.shop.Shop;
 import com.bcs.vanaToit.domain.shop.ShopRepository;
 import com.bcs.vanaToit.service.food.FoodRequest;
+import com.bcs.vanaToit.service.food.StockRequest;
+import com.bcs.vanaToit.service.food.StockResponse;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,4 +47,12 @@ public class ShopFoodService {
         }
 
     }
-}
+
+    public List<StockResponse> getStock(StockRequest request) {
+        List<ShopFood> stock = shopFoodRepository.findAllByShopName(request.getShopName());
+//            List<StockResponse> responses = new List<>();
+        return null;
+
+        }
+    }
+

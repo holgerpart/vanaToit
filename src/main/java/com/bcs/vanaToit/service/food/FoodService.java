@@ -5,6 +5,7 @@ import com.bcs.vanaToit.domain.shopfood.ShopFoodService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class FoodService {
@@ -21,5 +22,9 @@ public class FoodService {
 
     public void addFood(FoodRequest request) {
         shopFoodService.addFood(request);
+    }
+
+    public List<StockResponse> getStock(StockRequest request) {
+        shopFoodService.getStock(request);
     }
 }
