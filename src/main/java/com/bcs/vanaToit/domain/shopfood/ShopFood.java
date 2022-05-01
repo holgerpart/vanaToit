@@ -1,4 +1,4 @@
-package com.bcs.vanaToit.domain.transaction;
+package com.bcs.vanaToit.domain.shopfood;
 
 import com.bcs.vanaToit.domain.food.food.Food;
 import com.bcs.vanaToit.domain.food.unit.Unit;

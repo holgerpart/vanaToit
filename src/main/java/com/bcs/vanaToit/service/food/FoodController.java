@@ -12,10 +12,15 @@ public class FoodController {
     @Resource
     private FoodService foodService;
 
-    @PostMapping
+    @PostMapping("/article")
     @Operation(summary = "Artikli lisamine")
     public void addArticle(@RequestBody ArticleRequest request) {
         foodService.addArticle(request);
     }
 
+    @PostMapping("/food")
+    @Operation(summary = "Kaubarea lisamine")
+    public void addFood(@RequestBody FoodRequest request) {
+        foodService.addFood(request);
+    }
 }

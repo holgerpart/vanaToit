@@ -1,5 +1,6 @@
 package com.bcs.vanaToit.domain.transaction;
 
+import com.bcs.vanaToit.domain.shopfood.ShopFood;
 import com.bcs.vanaToit.domain.user.user.User;
 
 import javax.persistence.*;
