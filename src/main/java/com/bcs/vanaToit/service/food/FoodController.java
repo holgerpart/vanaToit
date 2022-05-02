@@ -30,7 +30,6 @@ public class FoodController {
     @GetMapping("/all")
     @Operation(summary = "Väljasta laoseis")
     public List<ShopFoodDto> getStockByShop(StockRequest request) {
-
         return foodService.getStockByShop(request);
     }
 

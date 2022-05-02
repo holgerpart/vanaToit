@@ -25,7 +25,7 @@ public class FoodService {
         shopFoodService.addFood(request);
     }
 
-    public List<ShopFoodDto> getStock(StockRequest request) {
-        return shopFoodService.getStock(request);
+    public List<ShopFoodDto> getStockByShop(StockRequest request) {
+        return shopFoodService.getStockByShop(request);
     }
 }

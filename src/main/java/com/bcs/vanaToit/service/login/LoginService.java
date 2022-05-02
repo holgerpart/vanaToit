@@ -1,5 +1,6 @@
 package com.bcs.vanaToit.service.login;
 
+import com.bcs.vanaToit.domain.user.role.Role;
 import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.domain.user.user.UserService;
@@ -29,8 +30,20 @@ public class LoginService {
 
         List<UserRole> userRoles = userRoleService.getUserRoles(userId);
         List<Integer> userRoleIds = getUserRoleIds(userRoles);
+        List<String> roleNames = getRoleNames(userRoles);
         loginResponse.setUserRoleIds(userRoleIds);
+        loginResponse.setRoleNames(roleNames);
         return loginResponse;
+    }
+
+    private List<String> getRoleNames(List<UserRole> userRoles) {
+        List<String> roles = new ArrayList<>();
+        for (UserRole userRole : userRoles) {
+            Role role = userRole.getRole();
+            String roleName = role.getRole();
+            roles.add(roleName);
+        }
+        return roles;
     }
 
     private List<Integer> getUserRoleIds(List<UserRole> userRoles) {
