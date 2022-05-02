@@ -1,4 +1,4 @@
-package com.bcs.vanaToit.domain.user;
+package com.bcs.vanaToit.domain.user.authorized;
 
 import com.bcs.vanaToit.domain.shop.Shop;
 import com.bcs.vanaToit.domain.user.user.User;

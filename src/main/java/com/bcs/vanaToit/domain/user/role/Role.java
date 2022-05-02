@@ -1,7 +1,12 @@
 package com.bcs.vanaToit.domain.user.role;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "role")
 public class Role {
@@ -13,20 +18,5 @@ public class Role {
     @Column(name = "role", nullable = false, length = 50)
     private String role;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
 }
