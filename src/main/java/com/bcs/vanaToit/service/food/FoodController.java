@@ -33,4 +33,10 @@ public class FoodController {
         return foodService.getStockByShop(request);
     }
 
+    @PostMapping("/booking")
+    @Operation(summary = "Tellimuse lisamine")
+    public void addBook(@RequestBody BookRequest request) {
+        foodService.addBook(request);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.bcs.vanaToit.domain.transaction;
+package com.bcs.vanaToit.domain.transaction.bookfood;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
