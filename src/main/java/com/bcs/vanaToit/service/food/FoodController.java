@@ -1,6 +1,7 @@
 package com.bcs.vanaToit.service.food;
 
 import com.bcs.vanaToit.domain.shopfood.ShopFood;
+import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,9 @@ public class FoodController {
 
     @GetMapping("/all")
     @Operation(summary = "Väljasta laoseis")
-    public List<StockResponse> getStock(StockRequest request) {
-        foodService.getStock(request);
+    public List<ShopFoodDto> getStockByShop(StockRequest request) {
+
+        return foodService.getStockByShop(request);
     }
 
 }

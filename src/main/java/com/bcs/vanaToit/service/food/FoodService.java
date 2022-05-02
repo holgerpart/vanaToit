@@ -1,6 +1,7 @@
 package com.bcs.vanaToit.service.food;
 
 import com.bcs.vanaToit.domain.food.food.ArticleService;
+import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodService;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class FoodService {
         shopFoodService.addFood(request);
     }
 
-    public List<StockResponse> getStock(StockRequest request) {
-        shopFoodService.getStock(request);
+    public List<ShopFoodDto> getStock(StockRequest request) {
+        return shopFoodService.getStock(request);
     }
 }

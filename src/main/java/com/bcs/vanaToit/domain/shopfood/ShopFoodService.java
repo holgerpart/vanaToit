@@ -29,6 +29,9 @@ public class ShopFoodService {
     @Resource
     private UnitRepository unitRepository;
 
+    @Resource
+    private ShopFoodMapper shopFoodMapper;
+
     public void addFood(FoodRequest request) {
         Optional<ShopFood> shopFood = shopFoodRepository.findShopFood(request.getShopId(), request.getFoodId());
         ShopFood newFood = new ShopFood();
@@ -48,10 +51,9 @@ public class ShopFoodService {
 
     }
 
-    public List<StockResponse> getStock(StockRequest request) {
+    public List<ShopFoodDto> getStockByShop(StockRequest request) {
         List<ShopFood> stock = shopFoodRepository.findAllByShopName(request.getShopName());
-//            List<StockResponse> responses = new List<>();
-        return null;
+        return shopFoodMapper.toDtos(stock);
 
         }
     }

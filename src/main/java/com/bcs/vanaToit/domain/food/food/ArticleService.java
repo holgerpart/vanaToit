@@ -29,6 +29,4 @@ public class ArticleService {
         foodRepository.save(article);
     }
 
-//    public void addA
-
 }
