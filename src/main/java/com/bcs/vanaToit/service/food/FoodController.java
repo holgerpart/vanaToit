@@ -1,6 +1,5 @@
 package com.bcs.vanaToit.service.food;
 
-import com.bcs.vanaToit.domain.shopfood.ShopFood;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,13 +29,13 @@ public class FoodController {
 
     @GetMapping("/all")
     @Operation(summary = "Väljasta poe laoseis")
-    public List<ShopFoodDto> getStockByShop(StockRequest request) {
+    public List<ShopFoodDto> getStockByShop(ShopFoodRequest request) {
         return foodService.getStockByShop(request);
     }
 
     @GetMapping("/shopid")
     @Operation(summary = "Väljasta poe laoseis poe Id järgi")
-    public List<ShopFoodDto> getStockByShopId(StockRequestById request) {
+    public List<ShopFoodDto> getStockByShopId(ShopFoodRequestById request) {
         return foodService.getStockByShopId(request);
     }
 

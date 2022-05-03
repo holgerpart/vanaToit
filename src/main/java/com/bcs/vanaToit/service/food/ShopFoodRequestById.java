@@ -3,6 +3,6 @@ package com.bcs.vanaToit.service.food;
 import lombok.Data;
 
 @Data
-public class StockRequestById {
+public class ShopFoodRequestById {
     private Integer shopId;
 }
