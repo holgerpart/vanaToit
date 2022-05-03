@@ -28,7 +28,7 @@ public class FoodController {
     }
 
     @GetMapping("/all")
-    @Operation(summary = "Väljasta laoseis")
+    @Operation(summary = "Väljasta poe laoseis")
     public List<ShopFoodDto> getStockByShop(StockRequest request) {
         return foodService.getStockByShop(request);
     }
