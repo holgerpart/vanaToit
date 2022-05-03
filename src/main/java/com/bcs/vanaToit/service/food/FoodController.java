@@ -57,7 +57,14 @@ public class FoodController {
         return foodService.getAuthorizedShops(userId);
     }
 
-    public List<ShopFoodDto>findShopByArticle(FoodArticleRequest request){
-        return null;
+    @GetMapping("/articlename")
+    @Operation(summary="Tootenimetuse järgi toodete leidmine ")
+    public List<ShopFoodDto> findShopFoodByFoodArticle(FoodArticleRequest request){
+        return foodService.findShopFoodByFoodArticle(request);
+    }
+    @GetMapping("/typename")
+    @Operation(summary= "toote tüübi järgi toodete leidmine")
+    public List<ShopFoodDto>findShopFoodByFoodType(FoodTypeRequest request){
+        return foodService.findShopFoodByFoodType(request);
     }
 }

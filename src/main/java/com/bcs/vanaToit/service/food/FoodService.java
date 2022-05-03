@@ -74,4 +74,13 @@ public class FoodService {
         List<AuthorizedUser> authorizedShops = authorizedUserService.getAuthorizedShops(userId);
         return authorizedUserMapper.toDtos(authorizedShops);
     }
+
+    public List<ShopFoodDto> findShopFoodByFoodArticle(FoodArticleRequest request) {
+        return shopFoodService.findShopFoodByFoodArticle(request);
+
+    }
+
+    public List<ShopFoodDto> findShopFoodByFoodType(FoodTypeRequest request) {
+        return shopFoodService.findShopFoodByFoodType(request);
+    }
 }

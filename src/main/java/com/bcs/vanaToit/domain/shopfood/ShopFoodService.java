@@ -3,10 +3,7 @@ package com.bcs.vanaToit.domain.shopfood;
 import com.bcs.vanaToit.domain.food.food.FoodRepository;
 import com.bcs.vanaToit.domain.food.unit.UnitRepository;
 import com.bcs.vanaToit.domain.shop.shop.ShopRepository;
-import com.bcs.vanaToit.service.food.CityRequest;
-import com.bcs.vanaToit.service.food.FoodRequest;
-import com.bcs.vanaToit.service.food.ShopFoodRequest;
-import com.bcs.vanaToit.service.food.ShopFoodRequestById;
+import com.bcs.vanaToit.service.food.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -65,6 +62,16 @@ public class ShopFoodService {
     public List<ShopFoodDto> getStockByShopId(ShopFoodRequestById request) {
         List<ShopFood> stock = shopFoodRepository.findByShopId(request.getShopId());
         return shopFoodMapper.toDtos(stock);
+    }
+
+    public List<ShopFoodDto> findShopFoodByFoodArticle(FoodArticleRequest request) {
+        List<ShopFood> shopFoods =shopFoodRepository.findShopsByFoodName(request.getFoodArticle());
+        return shopFoodMapper.toDtos(shopFoods);
+    }
+
+    public List<ShopFoodDto> findShopFoodByFoodType(FoodTypeRequest request) {
+        List<ShopFood> shopFoods = shopFoodRepository.findByFoodByTypeName(request.getTypeName());
+        return shopFoodMapper.toDtos(shopFoods);
     }
 }
 
