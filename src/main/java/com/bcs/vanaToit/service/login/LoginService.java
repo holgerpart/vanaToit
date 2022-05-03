@@ -1,9 +1,8 @@
 package com.bcs.vanaToit.service.login;
 
+import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserService;
 import com.bcs.vanaToit.domain.user.contact.ContactService;
-import com.bcs.vanaToit.domain.user.role.Role;
 import com.bcs.vanaToit.domain.user.user.User;
-import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.domain.user.user.UserService;
 import com.bcs.vanaToit.domain.user.userrole.UserRole;
 import com.bcs.vanaToit.domain.user.userrole.UserRoleService;
@@ -24,6 +23,9 @@ public class LoginService {
 
     @Resource
     private UserRoleService userRoleService;
+
+    @Resource
+    private AuthorizedUserService authorizedUserService;
 
     public LoginResponse logIn(LoginRequest request) {
         User user = userService.getValidUser(request);
