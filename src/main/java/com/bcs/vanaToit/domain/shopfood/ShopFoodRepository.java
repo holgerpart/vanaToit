@@ -16,4 +16,9 @@ public interface ShopFoodRepository extends JpaRepository<ShopFood, Integer> {
 
     @Query("select s from ShopFood s where s.shop.id = ?1 and s.food.id = ?2")
     Optional<ShopFood> findShopFood(Integer shopId, Integer foodId);
+
+    @Query("select s from ShopFood s where upper(s.food.name) = upper(?1)")
+    List<ShopFood> findByFoodName(String name);
+
+
 }

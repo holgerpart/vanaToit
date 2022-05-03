@@ -39,4 +39,10 @@ public class FoodController {
         foodService.addBook(request);
     }
 
+    @GetMapping("/cityname")
+    @Operation(summary = "Linna järgi toote leidnmine")
+    public List<ShopFoodDto> findShopFoodByCity(CityRequest request){
+        return foodService.findShopFoodByCity(request);
+    }
+
 }

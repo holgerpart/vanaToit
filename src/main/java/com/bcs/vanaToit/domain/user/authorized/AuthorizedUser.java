@@ -1,6 +1,6 @@
 package com.bcs.vanaToit.domain.user.authorized;
 
-import com.bcs.vanaToit.domain.shop.Shop;
+import com.bcs.vanaToit.domain.shop.shop.Shop;
 import com.bcs.vanaToit.domain.user.user.User;
 
 import javax.persistence.*;
