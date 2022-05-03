@@ -4,7 +4,6 @@ import com.bcs.vanaToit.domain.food.food.ArticleService;
 import com.bcs.vanaToit.domain.shop.city.CityService;
 import com.bcs.vanaToit.domain.shop.profile.ProfileService;
 import com.bcs.vanaToit.domain.shop.shop.ShopService;
-import com.bcs.vanaToit.domain.shopfood.ShopFood;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodService;
 import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodService;
@@ -54,7 +53,7 @@ public class FoodService {
         shopFoodService.addFood(request);
     }
 
-    public List<ShopFoodDto> getStockByShop(StockRequest request) {
+    public List<ShopFoodDto> getStockByShop(ShopFoodRequest request) {
 
         return shopFoodService.getStockByShop(request);
     }
@@ -67,7 +66,7 @@ public class FoodService {
         return shopFoodService.findShopFoodByCity(request);
     }
 
-    public List<ShopFoodDto> getStockByShopId(StockRequestById request) {
+    public List<ShopFoodDto> getStockByShopId(ShopFoodRequestById request) {
         return shopFoodService.getStockByShopId(request);
     }
 

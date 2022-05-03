@@ -12,7 +12,7 @@ public class ProfileService {
     @Resource ProfileRepository profileRepository;
 
     public List<Profile> getProfileId(Integer cityId){
-        List<Profile> profileId = profileRepository.findByCity_Id(cityId);
+        List<Profile> profileId = profileRepository.findByCityId(cityId);
         return profileId;
     }
 
