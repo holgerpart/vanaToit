@@ -1,16 +1,26 @@
 package com.bcs.vanaToit.validation;
 
 
+import com.bcs.vanaToit.domain.food.food.FoodRepository;
 import com.bcs.vanaToit.domain.user.user.User;
+import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.infrastructure.exception.BusinessException;
 import com.bcs.vanaToit.infrastructure.exception.DataNotFoundException;
+import com.bcs.vanaToit.service.food.ArticleRequest;
+import com.bcs.vanaToit.service.login.UserRequest;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Optional;
 
 @Service
 public class ValidationService {
 
+    @Resource
+    private FoodRepository foodRepository;
+
+    @Resource
+    private UserRepository userRepository;
 
     public static final String ACCOUNT_NOT_EXISTS = "Sellist kontot ei eksisteeri";
     public static final String CUSTOMER_NOT_EXISTS = "Sellist klienti ei eksisteeri";
@@ -19,12 +29,23 @@ public class ValidationService {
     public static final String INSUFFICIENT_FUNDS = "Kontol pole piisavalt vahendeid tehingu sooritamiseks";
     public static final String ISIKUKOOD_ALREADY_TAKEN = "Isikukood on kasutusel";
 
-    public void userExists(Optional<User> user) {
+    public void userNotExists(Optional<User> user) {
         if (user.isEmpty()) {
             throw new BusinessException("Viga andmetes", "Viga kasutajanime või parooli sisetamisel");
         }
 
+    }
 
+    public void userExists(UserRequest request) {
+        if (userRepository.existsByName(request.getName())) {
+            throw new BusinessException("Viga andmetes", "Selline kasutajanimi on juba olemas");
+        }
+    }
+
+    public void articleExists(ArticleRequest request) {
+        if(foodRepository.articleExists(request.getArticleName())){
+            throw new BusinessException("Viga andmetes", "See artikkel on juba olemas");
+        }
     }
 
 //    public void accountExists(Integer accountId, Optional<Account> account) {

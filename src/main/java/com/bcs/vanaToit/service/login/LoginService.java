@@ -1,16 +1,23 @@
 package com.bcs.vanaToit.service.login;
 
+import com.bcs.vanaToit.domain.user.contact.ContactService;
+import com.bcs.vanaToit.domain.user.role.Role;
 import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.domain.user.user.UserService;
 import com.bcs.vanaToit.domain.user.userrole.UserRole;
 import com.bcs.vanaToit.domain.user.userrole.UserRoleService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class LoginService {
+
+    @Resource
+    public ContactService contactService;
 
     @Resource
     private UserService userService;
@@ -26,17 +33,24 @@ public class LoginService {
         loginResponse.setUserId(userId);
 
         List<UserRole> userRoles = userRoleService.getUserRoles(userId);
-        List<Integer> userRoleIds = getUserRoleIds(userRoles);
-        loginResponse.setUserRoleIds(userRoleIds);
+        List<LoginRole> loginRoles = new ArrayList<>();
+        for (UserRole userRole : userRoles) {
+            LoginRole loginRole = new LoginRole();
+            loginRole.setRoleId(userRole.getRole().getId());
+            loginRole.setRoleName(userRole.getRole().getRole());
+            loginRoles.add(loginRole);
+        }
+        loginResponse.setUserRoles(loginRoles);
         return loginResponse;
     }
 
-    private List<Integer> getUserRoleIds(List<UserRole> userRoles) {
-        List<Integer> userRoleIds = new ArrayList<>();
-        for (UserRole userRole : userRoles) {
-            Integer id = userRole.getId();
-            userRoleIds.add(id);
-        }
-        return userRoleIds;
+
+    public UserResponse addUser(UserRequest request) {
+        return userService.addUser(request);
+
+    }
+
+    public void removeContactByName(NameRequest request) {
+        contactService.removeContactByName(request);
     }
 }

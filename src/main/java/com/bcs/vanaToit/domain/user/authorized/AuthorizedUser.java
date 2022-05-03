@@ -1,13 +1,13 @@
-package com.bcs.vanaToit.domain.user.userrole;
+package com.bcs.vanaToit.domain.user.authorized;
 
-import com.bcs.vanaToit.domain.user.role.Role;
+import com.bcs.vanaToit.domain.shop.Shop;
 import com.bcs.vanaToit.domain.user.user.User;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_role")
-public class UserRole {
+@Table(name = "authorized_user")
+public class AuthorizedUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -18,8 +18,8 @@ public class UserRole {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    @JoinColumn(name = "shop_id", nullable = false)
+    private Shop shop;
 
     public Integer getId() {
         return id;
@@ -37,12 +37,12 @@ public class UserRole {
         this.user = user;
     }
 
-    public Role getRole() {
-        return role;
+    public Shop getShop() {
+        return shop;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
 }

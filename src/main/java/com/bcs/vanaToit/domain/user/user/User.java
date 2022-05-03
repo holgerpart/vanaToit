@@ -1,6 +1,6 @@
 package com.bcs.vanaToit.domain.user.user;
 
-import com.bcs.vanaToit.domain.user.Contact;
+import com.bcs.vanaToit.domain.user.contact.Contact;
 
 import javax.persistence.*;
 

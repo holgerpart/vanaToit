@@ -6,5 +6,5 @@ import java.util.List;
 @Data
 public class LoginResponse {
     private Integer userId;
-    private List<Integer> userRoleIds;
+    private List<LoginRole> userRoles;
 }
