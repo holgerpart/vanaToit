@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ProfileRepository extends JpaRepository<Profile, Integer> {
     @Query("select p from Profile p where p.city.id = ?1")
-    List<Profile> findByCity_Id(Integer id);
+    List<Profile> findByCityId(Integer id);
 
 }

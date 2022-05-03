@@ -48,6 +48,7 @@ public class FoodController {
     @GetMapping("/cityname")
     @Operation(summary = "Linna järgi toote leidnmine")
     public List<ShopFoodDto> findShopFoodByCity(CityRequest request){
+
         return foodService.findShopFoodByCity(request);
     }
 
@@ -56,4 +57,7 @@ public class FoodController {
         return foodService.getAuthorizedShops(userId);
     }
 
+    public List<ShopFoodDto>findShopByArticle(FoodArticleRequest request){
+        return null;
+    }
 }
