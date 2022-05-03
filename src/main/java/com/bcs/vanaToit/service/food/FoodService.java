@@ -8,6 +8,10 @@ import com.bcs.vanaToit.domain.shopfood.ShopFood;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodService;
 import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodService;
+import com.bcs.vanaToit.domain.user.authorized.AuthorizedUser;
+import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
+import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserMapper;
+import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,6 +28,13 @@ public class FoodService {
 
     @Resource
     private ShopFoodService shopFoodService;
+
+    @Resource
+    private AuthorizedUserService authorizedUserService;
+
+    @Resource
+    private AuthorizedUserMapper authorizedUserMapper;
+
 
     @Resource
     private CityService cityService;
@@ -54,5 +65,14 @@ public class FoodService {
 
     public List<ShopFoodDto> findShopFoodByCity(CityRequest request) {
         return shopFoodService.findShopFoodByCity(request);
+    }
+
+    public List<ShopFoodDto> getStockByShopId(StockRequestById request) {
+        return shopFoodService.getStockByShopId(request);
+    }
+
+    public List<AuthorizedUserDto> getAuthorizedShops(Integer userId) {
+        List<AuthorizedUser> authorizedShops = authorizedUserService.getAuthorizedShops(userId);
+        return authorizedUserMapper.toDtos(authorizedShops);
     }
 }

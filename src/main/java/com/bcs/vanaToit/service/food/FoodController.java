@@ -2,6 +2,7 @@ package com.bcs.vanaToit.service.food;
 
 import com.bcs.vanaToit.domain.shopfood.ShopFood;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
+import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class FoodController {
         foodService.addArticle(request);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     @Operation(summary = "Kaubarea lisamine")
     public void addFood(@RequestBody FoodRequest request) {
         foodService.addFood(request);
@@ -31,6 +32,12 @@ public class FoodController {
     @Operation(summary = "Väljasta poe laoseis")
     public List<ShopFoodDto> getStockByShop(StockRequest request) {
         return foodService.getStockByShop(request);
+    }
+
+    @GetMapping("/shopid")
+    @Operation(summary = "Väljasta poe laoseis poe Id järgi")
+    public List<ShopFoodDto> getStockByShopId(StockRequestById request) {
+        return foodService.getStockByShopId(request);
     }
 
     @PostMapping("/booking")
@@ -43,6 +50,11 @@ public class FoodController {
     @Operation(summary = "Linna järgi toote leidnmine")
     public List<ShopFoodDto> findShopFoodByCity(CityRequest request){
         return foodService.findShopFoodByCity(request);
+    }
+
+    @GetMapping("/shops")
+    public List<AuthorizedUserDto> getAuthorizedShops(@RequestParam Integer userId) {
+        return foodService.getAuthorizedShops(userId);
     }
 
 }
