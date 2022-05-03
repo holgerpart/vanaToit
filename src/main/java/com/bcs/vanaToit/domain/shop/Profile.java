@@ -1,5 +1,7 @@
 package com.bcs.vanaToit.domain.shop;
 
+import com.bcs.vanaToit.domain.shop.City.City;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 

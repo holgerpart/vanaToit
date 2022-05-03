@@ -1,6 +1,7 @@
-package com.bcs.vanaToit.domain.shop;
+package com.bcs.vanaToit.domain.shop.City;
 
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "city")
