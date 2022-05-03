@@ -1,8 +1,12 @@
 package com.bcs.vanaToit.domain.shop.city;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "city")
 public class City {
@@ -14,20 +18,5 @@ public class City {
     @Column(name = "name", nullable = false)
     private String name;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 }

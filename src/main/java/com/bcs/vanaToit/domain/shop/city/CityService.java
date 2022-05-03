@@ -10,13 +10,9 @@ public class CityService {
     @Resource
     private CityRepository cityRepository;
 
-    public Integer getCityId(String cityName){
+    public Integer getCityId(String cityName) {
         City city = cityRepository.findByNameIgnoreCase(cityName);
         Integer cityId = city.getId();
         return cityId;
-
     }
-
-
-
 }
