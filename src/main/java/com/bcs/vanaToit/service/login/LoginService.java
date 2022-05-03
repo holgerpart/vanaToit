@@ -1,5 +1,6 @@
 package com.bcs.vanaToit.service.login;
 
+import com.bcs.vanaToit.domain.shop.shop.ShopService;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserService;
 import com.bcs.vanaToit.domain.user.contact.ContactService;
 import com.bcs.vanaToit.domain.user.user.User;
@@ -26,6 +27,9 @@ public class LoginService {
 
     @Resource
     private AuthorizedUserService authorizedUserService;
+
+    @Resource
+    private ShopService shopService;
 
     public LoginResponse logIn(LoginRequest request) {
         User user = userService.getValidUser(request);
@@ -54,5 +58,9 @@ public class LoginService {
 
     public void removeContactByName(NameRequest request) {
         contactService.removeContactByName(request);
+    }
+
+    public void addShopp(ShopRequest request) {
+        shopService.addShop(request);
     }
 }
