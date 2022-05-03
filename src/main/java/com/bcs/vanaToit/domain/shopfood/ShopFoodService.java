@@ -2,12 +2,10 @@ package com.bcs.vanaToit.domain.shopfood;
 
 import com.bcs.vanaToit.domain.food.food.FoodRepository;
 import com.bcs.vanaToit.domain.food.unit.UnitRepository;
-import com.bcs.vanaToit.domain.shop.Shop;
-import com.bcs.vanaToit.domain.shop.ShopRepository;
+import com.bcs.vanaToit.domain.shop.shop.ShopRepository;
 import com.bcs.vanaToit.service.food.FoodRequest;
 import com.bcs.vanaToit.service.food.StockRequest;
 import com.bcs.vanaToit.service.food.StockRequestById;
-import com.bcs.vanaToit.service.food.StockResponse;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

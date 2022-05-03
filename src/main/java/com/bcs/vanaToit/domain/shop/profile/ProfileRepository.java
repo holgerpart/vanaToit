@@ -1,4 +1,4 @@
-package com.bcs.vanaToit.domain.shop;
+package com.bcs.vanaToit.domain.shop.profile;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

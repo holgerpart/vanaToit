@@ -1,7 +1,5 @@
 package com.bcs.vanaToit.domain.shopfood;
 
-import com.bcs.vanaToit.domain.shop.City.City;
-import com.bcs.vanaToit.domain.shopfood.ShopFood;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

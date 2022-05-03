@@ -1,4 +1,4 @@
-package com.bcs.vanaToit.domain.shop;
+package com.bcs.vanaToit.domain.shop.shop;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

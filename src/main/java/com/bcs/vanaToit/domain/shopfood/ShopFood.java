@@ -2,7 +2,7 @@ package com.bcs.vanaToit.domain.shopfood;
 
 import com.bcs.vanaToit.domain.food.food.Food;
 import com.bcs.vanaToit.domain.food.unit.Unit;
-import com.bcs.vanaToit.domain.shop.Shop;
+import com.bcs.vanaToit.domain.shop.shop.Shop;
 
 import javax.persistence.*;
 import java.time.Instant;
