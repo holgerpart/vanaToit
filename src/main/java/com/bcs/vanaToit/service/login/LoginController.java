@@ -1,5 +1,6 @@
 package com.bcs.vanaToit.service.login;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,8 +22,13 @@ public class LoginController {
     }
 
     @DeleteMapping("/user")
-    public void removeContactByName(@RequestBody NameRequest request){
+    public void removeContactByName(@RequestBody NameRequest request) {
         loginService.removeContactByName(request);
     }
 
+    @PostMapping("/shop")
+    @Operation(summary = "Poe lisamine")
+    public void addShop(@RequestBody ShopRequest request) {
+        loginService.addShop(request);
+    }
 }

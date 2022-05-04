@@ -2,11 +2,13 @@ package com.bcs.vanaToit.validation;
 
 
 import com.bcs.vanaToit.domain.food.food.FoodRepository;
+import com.bcs.vanaToit.domain.shop.shop.ShopRepository;
 import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.infrastructure.exception.BusinessException;
 import com.bcs.vanaToit.infrastructure.exception.DataNotFoundException;
 import com.bcs.vanaToit.service.food.ArticleRequest;
+import com.bcs.vanaToit.service.login.ShopRequest;
 import com.bcs.vanaToit.service.login.UserRequest;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,9 @@ public class ValidationService {
 
     @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private ShopRepository shopRepository;
 
     public static final String ACCOUNT_NOT_EXISTS = "Sellist kontot ei eksisteeri";
     public static final String CUSTOMER_NOT_EXISTS = "Sellist klienti ei eksisteeri";
@@ -45,6 +50,12 @@ public class ValidationService {
     public void articleExists(ArticleRequest request) {
         if(foodRepository.articleExists(request.getArticleName())){
             throw new BusinessException("Viga andmetes", "See artikkel on juba olemas");
+        }
+    }
+
+    public void shopExists(ShopRequest request) {
+        if (shopRepository.existsByName(request.getShopName())) {
+            throw new BusinessException("Viga andmetes", "See pood on juba olemas");
         }
     }
 
