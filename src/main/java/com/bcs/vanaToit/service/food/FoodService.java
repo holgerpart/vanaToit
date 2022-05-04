@@ -58,7 +58,7 @@ public class FoodService {
         return shopFoodService.getStockByShop(request);
     }
 
-    public void addBook(BookRequest request) {
+    public void addBook(BookFoodRequest request) {
         bookFoodService.addBookFood(request);
     }
 

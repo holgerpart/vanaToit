@@ -3,12 +3,10 @@ package com.bcs.vanaToit.service.food;
 import lombok.Data;
 
 @Data
-public class BookRequest {
+public class BookFoodRequest {
 
     private Integer userId;
-
     private Integer shopFoodId;
-
     private Integer quantity;
 
 }

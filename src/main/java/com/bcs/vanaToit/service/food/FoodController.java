@@ -39,9 +39,9 @@ public class FoodController {
         return foodService.getStockByShopId(request);
     }
 
-    @PostMapping("/booking")
-    @Operation(summary = "Tellimuse lisamine")
-    public void addBook(@RequestBody BookRequest request) {
+    @PostMapping("/bookfood")
+    @Operation(summary = "Broneeringu lisamine ")
+    public void addBookFood(@RequestBody BookFoodRequest request) {
         foodService.addBook(request);
     }
 
@@ -67,4 +67,5 @@ public class FoodController {
     public List<ShopFoodDto>findShopFoodByFoodType(FoodTypeRequest request){
         return foodService.findShopFoodByFoodType(request);
     }
+
 }
