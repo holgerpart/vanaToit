@@ -38,8 +38,6 @@ public class BookFoodService {
         bookFood.setUser(user);
         bookFood.setQuantity(request.getQuantity());
         bookFood.setStatus(status);
-//        Shop shop = shopFood.getShop();
-//        Food food = shopFood.getFood();
         Integer id = shopFood.getId();
         bookFoodRepository.save(bookFood);
         shopFoodRepository.updateQuantityById(quantity, id);

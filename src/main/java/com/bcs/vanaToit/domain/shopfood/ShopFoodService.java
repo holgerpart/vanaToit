@@ -38,7 +38,10 @@ public class ShopFoodService {
 
         if (shopFood.isPresent()) {
             Integer quantity = shopFood.get().getQuantity() + request.getQuantity();
-            shopFoodRepository.updateQuantityByShopAndFoodAllIgnoreCase(quantity, shopFood.get().getShop(), shopFood.get().getFood());
+            String comments = shopFood.get().getComments();
+//            shopFoodRepository.updateQuantityById(quantity, shopFood.get().getId());
+            shopFoodRepository.updateCommentsAndQuantityById(comments, quantity, shopFood.get().getId());
+
         } else {
             newFood.setFood(foodRepository.getById(request.getFoodId()));
             newFood.setShop(shopRepository.getById(request.getShopId()));

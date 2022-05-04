@@ -36,6 +36,11 @@ public interface ShopFoodRepository extends JpaRepository<ShopFood, Integer> {
 
     @Transactional
     @Modifying
+    @Query("update ShopFood s set s.comments = ?1, s.quantity = ?2 where s.id = ?3")
+    void updateCommentsAndQuantityById(String comments, Integer quantity, Integer id);
+
+    @Transactional
+    @Modifying
     @Query("update ShopFood s set s.quantity = ?1 where s.id = ?2")
     void updateQuantityById(Integer quantity, Integer id);
 
