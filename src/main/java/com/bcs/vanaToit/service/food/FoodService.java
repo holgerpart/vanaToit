@@ -49,16 +49,16 @@ public class FoodService {
         articleService.addArticle(request);
     }
 
-    public void addFood(FoodRequest request) {
-        shopFoodService.addFood(request);
+    public void addShopFood(FoodRequest request) {
+        shopFoodService.addShopFood(request);
     }
 
-    public List<ShopFoodDto> getStockByShop(ShopFoodRequest request) {
+    public List<ShopFoodDto> getShopFoodByShop(ShopFoodRequest request) {
 
-        return shopFoodService.getStockByShop(request);
+        return shopFoodService.getShopFoodByShop(request);
     }
 
-    public void addBook(BookRequest request) {
+    public void addBookFood(BookFoodRequest request) {
         bookFoodService.addBookFood(request);
     }
 

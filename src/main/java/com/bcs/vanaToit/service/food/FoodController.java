@@ -23,14 +23,14 @@ public class FoodController {
 
     @PostMapping
     @Operation(summary = "Kaubarea lisamine")
-    public void addFood(@RequestBody FoodRequest request) {
-        foodService.addFood(request);
+    public void addShopFood(@RequestBody FoodRequest request) {
+        foodService.addShopFood(request);
     }
 
     @GetMapping("/all")
     @Operation(summary = "Väljasta poe laoseis")
-    public List<ShopFoodDto> getStockByShop(ShopFoodRequest request) {
-        return foodService.getStockByShop(request);
+    public List<ShopFoodDto> getShopFoodByShop(ShopFoodRequest request) {
+        return foodService.getShopFoodByShop(request);
     }
 
     @GetMapping("/shopid")
@@ -39,16 +39,15 @@ public class FoodController {
         return foodService.getStockByShopId(request);
     }
 
-    @PostMapping("/booking")
-    @Operation(summary = "Tellimuse lisamine")
-    public void addBook(@RequestBody BookRequest request) {
-        foodService.addBook(request);
+    @PostMapping("/bookfood")
+    @Operation(summary = "Broneeringu lisamine")
+    public void addBookFood(@RequestBody BookFoodRequest request) {
+        foodService.addBookFood(request);
     }
 
     @GetMapping("/cityname")
     @Operation(summary = "Linna järgi toote leidnmine")
-    public List<ShopFoodDto> findShopFoodByCity(CityRequest request){
-
+    public List<ShopFoodDto> findShopFoodByCity(CityRequest request) {
         return foodService.findShopFoodByCity(request);
     }
 

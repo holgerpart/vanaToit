@@ -29,11 +29,16 @@ public class ShopFoodService {
     @Resource
     private ShopFoodMapper shopFoodMapper;
 
-    public void addFood(FoodRequest request) {
+    public void addShopFood(FoodRequest request) {
         Optional<ShopFood> shopFood = shopFoodRepository.findShopFood(request.getShopId(), request.getFoodId());
         ShopFood newFood = new ShopFood();
+
         if (shopFood.isPresent()) {
             Integer quantity = shopFood.get().getQuantity() + request.getQuantity();
+            String comments = shopFood.get().getComments();
+//            shopFoodRepository.updateQuantityById(quantity, shopFood.get().getId());
+            shopFoodRepository.updateCommentsAndQuantityById(comments, quantity, shopFood.get().getId());
+
         } else {
             newFood.setFood(foodRepository.getById(request.getFoodId()));
             newFood.setShop(shopRepository.getById(request.getShopId()));
@@ -48,7 +53,7 @@ public class ShopFoodService {
 
     }
 
-    public List<ShopFoodDto> getStockByShop(ShopFoodRequest request) {
+    public List<ShopFoodDto> getShopFoodByShop(ShopFoodRequest request) {
         List<ShopFood> stock = shopFoodRepository.findAllByShopName(request.getShopName());
         return shopFoodMapper.toDtos(stock);
 
