@@ -23,8 +23,8 @@ public class FoodController {
 
     @PostMapping
     @Operation(summary = "Kaubarea lisamine")
-    public void addFood(@RequestBody FoodRequest request) {
-        foodService.addFood(request);
+    public void addShopFood(@RequestBody FoodRequest request) {
+        foodService.addShopFood(request);
     }
 
     @GetMapping("/all")

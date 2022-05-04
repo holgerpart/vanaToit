@@ -32,11 +32,12 @@ public class ShopFoodService {
     @Resource
     private ShopFoodMapper shopFoodMapper;
 
-    public void addFood(FoodRequest request) {
+    public void addShopFood(FoodRequest request) {
         Optional<ShopFood> shopFood = shopFoodRepository.findShopFood(request.getShopId(), request.getFoodId());
         ShopFood newFood = new ShopFood();
         if (shopFood.isPresent()) {
             Integer quantity = shopFood.get().getQuantity() + request.getQuantity();
+            shopFoodRepository.updateQuantityByShopAndFood(quantity, shopFood.get().getShop(), shopFood.get().getFood());
         } else {
             newFood.setFood(foodRepository.getById(request.getFoodId()));
             newFood.setShop(shopRepository.getById(request.getShopId()));

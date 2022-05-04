@@ -49,8 +49,8 @@ public class FoodService {
         articleService.addArticle(request);
     }
 
-    public void addFood(FoodRequest request) {
-        shopFoodService.addFood(request);
+    public void addShopFood(FoodRequest request) {
+        shopFoodService.addShopFood(request);
     }
 
     public List<ShopFoodDto> getStockByShop(ShopFoodRequest request) {
