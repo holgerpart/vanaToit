@@ -60,7 +60,7 @@ public class LoginService {
         contactService.removeContactByName(request);
     }
 
-    public void addShopp(ShopRequest request) {
+    public void addShop(ShopRequest request) {
         shopService.addShop(request);
     }
 }

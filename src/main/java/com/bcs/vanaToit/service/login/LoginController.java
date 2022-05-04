@@ -29,6 +29,6 @@ public class LoginController {
     @PostMapping("/shop")
     @Operation(summary = "Poe lisamine")
     public void addShop(@RequestBody ShopRequest request) {
-        loginService.addShopp(request);
+        loginService.addShop(request);
     }
 }
