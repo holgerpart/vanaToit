@@ -32,5 +32,12 @@ public interface ShopFoodRepository extends JpaRepository<ShopFood, Integer> {
     @Transactional
     @Modifying
     @Query("update ShopFood s set s.quantity = ?1 where upper(s.shop) = upper(?2) and upper(s.food) = upper(?3)")
-    void updateQuantityByShopAndFood(Integer quantity, Shop shop, Food food);
+    int updateQuantityByShopAndFoodAllIgnoreCase(Integer quantity, Shop shop, Food food);
+
+    @Transactional
+    @Modifying
+    @Query("update ShopFood s set s.quantity = ?1 where s.id = ?2")
+    void updateQuantityById(Integer quantity, Integer id);
+
+
 }
