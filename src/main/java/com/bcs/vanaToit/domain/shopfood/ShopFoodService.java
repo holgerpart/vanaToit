@@ -52,7 +52,7 @@ public class ShopFoodService {
 
     }
 
-    public List<ShopFoodDto> getStockByShop(ShopFoodRequest request) {
+    public List<ShopFoodDto> getShopFoodByShop(ShopFoodRequest request) {
         List<ShopFood> stock = shopFoodRepository.findAllByShopName(request.getShopName());
         return shopFoodMapper.toDtos(stock);
 
