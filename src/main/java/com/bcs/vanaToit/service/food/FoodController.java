@@ -22,6 +22,12 @@ public class FoodController {
         foodService.addArticle(request);
     }
 
+    @PostMapping("/shopfoodquantity")
+    @Operation(summary = "Id järgi kaubakoguse muutmine")
+    public void updateShopFoodById(@RequestBody FoodIdRequest request) {
+        foodService.updateShopFoodById(request);
+    }
+
     @PostMapping
     @Operation(summary = "Kaubarea lisamine")
     public void addShopFood(@RequestBody FoodRequest request) {
@@ -75,11 +81,7 @@ public class FoodController {
         return foodService.findShopFoodByFoodType(request);
     }
 
-    @PostMapping("/shopfoodquantity")
-    @Operation(summary = "Id järgi kaubakoguse muutmine")
-    public void updateShopFoodById(FoodIdRequest request) {
-        foodService.updateShopFoodById(request);
-    }
+
 
     @GetMapping("/foods")
     @Operation(summary = "Leia broneeringud poe id järgi")
