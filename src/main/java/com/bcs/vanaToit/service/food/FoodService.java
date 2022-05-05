@@ -83,4 +83,8 @@ public class FoodService {
     public List<ShopFoodDto> findShopFoodByFoodType(FoodTypeRequest request) {
         return shopFoodService.findShopFoodByFoodType(request);
     }
+
+    public void updateShopFoodById(FoodIdRequest request) {
+        shopFoodService.updateShopFoodById(request);
+    }
 }

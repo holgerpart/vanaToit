@@ -68,4 +68,9 @@ public class FoodController {
         return foodService.findShopFoodByFoodType(request);
     }
 
+    @PostMapping("/shopfoodquantity")
+    @Operation(summary = "Id järgi kaubakoguse muutmine")
+    public void updateShopFoodById(FoodIdRequest request){
+        foodService.updateShopFoodById(request);
+    }
 }

@@ -73,5 +73,9 @@ public class ShopFoodService {
         List<ShopFood> shopFoods = shopFoodRepository.findByFoodByTypeName(request.getTypeName());
         return shopFoodMapper.toDtos(shopFoods);
     }
+
+    public void updateShopFoodById(FoodIdRequest request) {
+        shopFoodRepository.updateQuantityById(request.getQuantity(),request.getFoodId());
+    }
 }
 

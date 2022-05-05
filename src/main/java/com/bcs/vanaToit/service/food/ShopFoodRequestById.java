@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class ShopFoodRequestById {
     private Integer shopId;
+
 }

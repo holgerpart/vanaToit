@@ -1,8 +1,10 @@
 package com.bcs.vanaToit.domain.shopfood;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +32,21 @@ public interface ShopFoodRepository extends JpaRepository<ShopFood, Integer> {
 
     @Query("select s from ShopFood s where upper(s.food.type.name) = upper(?1)")
     List<ShopFood> findByFoodByTypeName(String name);
+
+    @Modifying
+    @Query("update ShopFood s set s.quantity = ?1, s.comments = ?2 where s.id = ?3")
+    int updateQuantityAndCommentsById(Integer quantity, String comments, Integer id);
+
+    @Transactional
+    @Modifying
+    @Query("update ShopFood s set s.quantity = ?1 where s.id = ?2")
+    void updateQuantityById(Integer quantity, Integer id);
+
+
+
+
+
+
 
 
 }
