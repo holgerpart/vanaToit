@@ -14,12 +14,12 @@ public interface BookFoodMapper {
     @Mapping(source = "status", target = "status.description")
     BookFood toEntity(BookFoodDto bookFoodDto);
 
-    @InheritInverseConfiguration(name = "bookFoodDtoToBookFood")
+    @InheritInverseConfiguration(name = "toEntity")
     BookFoodDto toDto(BookFood bookFood);
 
     List<BookFoodDto> toDtos(List<BookFood> bookFoods);
 
-    @InheritConfiguration(name = "bookFoodDtoToBookFood")
+    @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateBookFoodFromBookFoodDto(BookFoodDto bookFoodDto, @MappingTarget BookFood bookFood);
 }

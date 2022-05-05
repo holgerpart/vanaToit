@@ -14,12 +14,12 @@ public interface ShopFoodMapper {
     @Mapping(source = "unitName", target = "unit.name")
     ShopFood toEntity(ShopFoodDto shopFoodDto);
 
-    @InheritInverseConfiguration(name = "shopFoodDtoToShopFood")
+    @InheritInverseConfiguration(name = "toEntity")
     ShopFoodDto toDto(ShopFood shopFood);
 
     List<ShopFoodDto> toDtos(List<ShopFood> stock);
 
-    @InheritConfiguration(name = "shopFoodDtoToShopFood")
+    @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateShopFoodFromShopFoodDto(ShopFoodDto shopFoodDto, @MappingTarget ShopFood shopFood);
 }
