@@ -51,4 +51,8 @@ public class BookFoodService {
         List<BookFood> list = bookFoodRepository.findAll();
         return bookFoodMapper.toDtos(list);
     }
+
+    public List<BookFood> findAllActiveOrdersByShopId(Integer shopId) {
+        return bookFoodRepository.getBookFoods(shopId);
+    }
 }

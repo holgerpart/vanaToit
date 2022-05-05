@@ -1,7 +1,12 @@
 package com.bcs.vanaToit.domain.user.contact;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "contact")
 public class Contact {
@@ -15,29 +20,5 @@ public class Contact {
 
     @Column(name = "last_name", nullable = false, length = 50)
     private String lastName;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
 }

@@ -62,4 +62,36 @@ public class FoodController {
         return foodService.getBookFoods();
     }
 
+
+    @GetMapping("/articlename")
+    @Operation(summary = "Tootenimetuse järgi toodete leidmine ")
+    public List<ShopFoodDto> findShopFoodByFoodArticle(FoodArticleRequest request) {
+        return foodService.findShopFoodByFoodArticle(request);
+    }
+
+    @GetMapping("/typename")
+    @Operation(summary = "toote tüübi järgi toodete leidmine")
+    public List<ShopFoodDto> findShopFoodByFoodType(FoodTypeRequest request) {
+        return foodService.findShopFoodByFoodType(request);
+    }
+
+    @PostMapping("/shopfoodquantity")
+    @Operation(summary = "Id järgi kaubakoguse muutmine")
+    public void updateShopFoodById(FoodIdRequest request) {
+        foodService.updateShopFoodById(request);
+    }
+
+    @GetMapping("/foods")
+    @Operation(summary = "Leia broneeringud poe id järgi")
+    public List<BookFoodDto> findAllActiveOrdersByShopId(@RequestParam Integer shopId) {
+        return foodService.findAllActiveOrdersByShopId(shopId);
+    }
+
+    @GetMapping("/stock")
+    @Operation(summary = "Väljasta ühe toote laoseis poe Id ja toote järgi")
+    public List<ShopFoodDto> getItemStockByShopId(ShopFoodStockRequest request) {
+        return foodService.getItemStockByShopId(request);
+
+    }
 }
+

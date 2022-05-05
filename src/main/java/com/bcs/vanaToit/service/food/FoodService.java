@@ -6,7 +6,9 @@ import com.bcs.vanaToit.domain.shop.profile.ProfileService;
 import com.bcs.vanaToit.domain.shop.shop.ShopService;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodService;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFood;
 import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodDto;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodMapper;
 import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodService;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUser;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
@@ -34,6 +36,9 @@ public class FoodService {
 
     @Resource
     private AuthorizedUserMapper authorizedUserMapper;
+
+    @Resource
+    private BookFoodMapper bookFoodMapper;
 
 
     @Resource
@@ -79,4 +84,27 @@ public class FoodService {
     public List<BookFoodDto> getBookFoods() {
         return bookFoodService.getBookFoods();
     }
+
+    public List<ShopFoodDto> findShopFoodByFoodArticle(FoodArticleRequest request) {
+        return shopFoodService.findShopFoodByFoodArticle(request);
+
+    }
+
+    public List<ShopFoodDto> findShopFoodByFoodType(FoodTypeRequest request) {
+        return shopFoodService.findShopFoodByFoodType(request);
+    }
+
+    public void updateShopFoodById(FoodIdRequest request) {
+        shopFoodService.updateShopFoodById(request);
+    }
+
+    public List<ShopFoodDto> getItemStockByShopId(ShopFoodStockRequest request) {
+        return shopFoodService.getItemStockByShopId(request);
+    }
+
+    public List<BookFoodDto> findAllActiveOrdersByShopId(Integer shopId) {
+        List<BookFood> foods = bookFoodService.findAllActiveOrdersByShopId(shopId);
+        return bookFoodMapper.toDtos(foods);
+    }
+
 }
