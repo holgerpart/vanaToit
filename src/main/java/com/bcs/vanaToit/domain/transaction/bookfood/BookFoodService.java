@@ -12,6 +12,7 @@ import com.bcs.vanaToit.service.food.BookFoodRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class BookFoodService {
@@ -28,6 +29,9 @@ public class BookFoodService {
     @Resource
     private StatusRepository statusRepository;
 
+    @Resource
+    private BookFoodMapper bookFoodMapper;
+
     public void addBookFood(BookFoodRequest request) {
         BookFood bookFood = new BookFood();
         ShopFood shopFood = shopFoodRepository.getById(request.getShopFoodId());
@@ -41,5 +45,10 @@ public class BookFoodService {
         Integer id = shopFood.getId();
         bookFoodRepository.save(bookFood);
         shopFoodRepository.updateQuantityById(quantity, id);
+    }
+
+    public List<BookFoodDto> getBookFoods(BookFoodRequest request) {
+        List<BookFood> list = bookFoodRepository.findAll();
+        return bookFoodMapper.toDtos(list);
     }
 }

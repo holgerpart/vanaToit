@@ -1,6 +1,7 @@
 package com.bcs.vanaToit.service.food;
 
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodDto;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +55,11 @@ public class FoodController {
     @GetMapping("/shops")
     public List<AuthorizedUserDto> getAuthorizedShops(@RequestParam Integer userId) {
         return foodService.getAuthorizedShops(userId);
+    }
+
+    @GetMapping("/bookfoods")
+    public List<BookFoodDto> getBookFoods(BookFoodRequest request) {
+        return foodService.getBookFoods(request);
     }
 
 }

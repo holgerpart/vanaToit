@@ -15,7 +15,7 @@ public interface ShopFoodMapper {
     ShopFood shopFoodDtoToShopFood(ShopFoodDto shopFoodDto);
 
     @InheritInverseConfiguration(name = "shopFoodDtoToShopFood")
-    ShopFoodDto shopFoodToShopFoodDto(ShopFood shopFood);
+    ShopFoodDto toDto(ShopFood shopFood);
 
     List<ShopFoodDto> toDtos(List<ShopFood> stock);
 

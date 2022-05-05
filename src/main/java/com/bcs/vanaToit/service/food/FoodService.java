@@ -6,6 +6,7 @@ import com.bcs.vanaToit.domain.shop.profile.ProfileService;
 import com.bcs.vanaToit.domain.shop.shop.ShopService;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodService;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodDto;
 import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodService;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUser;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
@@ -73,5 +74,9 @@ public class FoodService {
     public List<AuthorizedUserDto> getAuthorizedShops(Integer userId) {
         List<AuthorizedUser> authorizedShops = authorizedUserService.getAuthorizedShops(userId);
         return authorizedUserMapper.toDtos(authorizedShops);
+    }
+
+    public List<BookFoodDto> getBookFoods(BookFoodRequest request) {
+        return bookFoodService.getBookFoods(request);
     }
 }
