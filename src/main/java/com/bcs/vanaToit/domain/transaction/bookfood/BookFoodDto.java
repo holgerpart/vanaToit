@@ -7,12 +7,10 @@ import java.io.Serializable;
 @Data
 public class BookFoodDto implements Serializable {
     private final Integer id;
-    private final Integer userId;
-    private final String userContactFirstName;
-    private final String userContactLastName;
-    private final String shopFoodShopName;
-    private final String shopFoodFoodName;
-    private final String shopFoodComments;
+    private final String firstName;
+    private final String lastName;
+    private final String shopName;
+    private final String foodName;
     private final Integer quantity;
-    private final String statusDescription;
+    private final String status;
 }

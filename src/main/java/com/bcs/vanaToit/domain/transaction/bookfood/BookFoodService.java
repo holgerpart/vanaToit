@@ -47,7 +47,7 @@ public class BookFoodService {
         shopFoodRepository.updateQuantityById(quantity, id);
     }
 
-    public List<BookFoodDto> getBookFoods(BookFoodRequest request) {
+    public List<BookFoodDto> getBookFoods() {
         List<BookFood> list = bookFoodRepository.findAll();
         return bookFoodMapper.toDtos(list);
     }

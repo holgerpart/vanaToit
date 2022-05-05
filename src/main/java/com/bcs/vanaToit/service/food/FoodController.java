@@ -58,8 +58,8 @@ public class FoodController {
     }
 
     @GetMapping("/bookfoods")
-    public List<BookFoodDto> getBookFoods(BookFoodRequest request) {
-        return foodService.getBookFoods(request);
+    public List<BookFoodDto> getBookFoods() {
+        return foodService.getBookFoods();
     }
 
 }

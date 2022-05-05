@@ -76,7 +76,7 @@ public class FoodService {
         return authorizedUserMapper.toDtos(authorizedShops);
     }
 
-    public List<BookFoodDto> getBookFoods(BookFoodRequest request) {
-        return bookFoodService.getBookFoods(request);
+    public List<BookFoodDto> getBookFoods() {
+        return bookFoodService.getBookFoods();
     }
 }
