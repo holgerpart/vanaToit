@@ -1,10 +1,13 @@
 package com.bcs.vanaToit.domain.shopfood;
 
+import com.bcs.vanaToit.domain.food.food.Food;
+import com.bcs.vanaToit.domain.shop.shop.Shop;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +30,22 @@ public interface ShopFoodRepository extends JpaRepository<ShopFood, Integer> {
     @Query("select s from ShopFood s where upper(s.food.name) = upper(?1)")
     List<ShopFood> findByFoodName(String name);
 
+    @Transactional
+    @Modifying
+    @Query("update ShopFood s set s.quantity = ?1 where upper(s.shop) = upper(?2) and upper(s.food) = upper(?3)")
+    int updateQuantityByShopAndFoodAllIgnoreCase(Integer quantity, Shop shop, Food food);
+
+    @Transactional
+    @Modifying
+    @Query("update ShopFood s set s.comments = ?1, s.quantity = ?2 where s.id = ?3")
+    void updateCommentsAndQuantityById(String comments, Integer quantity, Integer id);
+
+    @Transactional
+    @Modifying
+    @Query("update ShopFood s set s.quantity = ?1 where s.id = ?2")
+    void updateQuantityById(Integer quantity, Integer id);
+
+
     @Query("select s from ShopFood s where upper(s.food.name) = upper(?1)")
     List<ShopFood> findShopsByFoodName(String name);
 
@@ -37,10 +56,10 @@ public interface ShopFoodRepository extends JpaRepository<ShopFood, Integer> {
     @Query("update ShopFood s set s.quantity = ?1, s.comments = ?2 where s.id = ?3")
     int updateQuantityAndCommentsById(Integer quantity, String comments, Integer id);
 
-    @Transactional
-    @Modifying
-    @Query("update ShopFood s set s.quantity = ?1 where s.id = ?2")
-    void updateQuantityById(Integer quantity, Integer id);
+    @Query("select s from ShopFood s where s.shop.id = ?1 and upper(s.food.name) = upper(?2)")
+    List<ShopFood>getItemStockByShopId (Integer id, String name);
+
+
 
 
 

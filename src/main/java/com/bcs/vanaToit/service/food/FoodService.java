@@ -6,6 +6,9 @@ import com.bcs.vanaToit.domain.shop.profile.ProfileService;
 import com.bcs.vanaToit.domain.shop.shop.ShopService;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodService;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFood;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodDto;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodMapper;
 import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodService;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUser;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
@@ -34,6 +37,9 @@ public class FoodService {
     @Resource
     private AuthorizedUserMapper authorizedUserMapper;
 
+    @Resource
+    private BookFoodMapper bookFoodMapper;
+
 
     @Resource
     private CityService cityService;
@@ -49,16 +55,16 @@ public class FoodService {
         articleService.addArticle(request);
     }
 
-    public void addFood(FoodRequest request) {
-        shopFoodService.addFood(request);
+    public void addShopFood(FoodRequest request) {
+        shopFoodService.addShopFood(request);
     }
 
-    public List<ShopFoodDto> getStockByShop(ShopFoodRequest request) {
+    public List<ShopFoodDto> getShopFoodByShop(ShopFoodRequest request) {
 
-        return shopFoodService.getStockByShop(request);
+        return shopFoodService.getShopFoodByShop(request);
     }
 
-    public void addBook(BookFoodRequest request) {
+    public void addBookFood(BookFoodRequest request) {
         bookFoodService.addBookFood(request);
     }
 
@@ -87,4 +93,14 @@ public class FoodService {
     public void updateShopFoodById(FoodIdRequest request) {
         shopFoodService.updateShopFoodById(request);
     }
+
+    public List<ShopFoodDto> getItemStockByShopId(ShopFoodStockRequest request) {
+        return shopFoodService.getItemStockByShopId(request);
+    }
+
+    public List<BookFoodDto> findAllActiveOrdersByShopId(Integer shopId) {
+        List<BookFood> foods = bookFoodService.findAllActiveOrdersByShopId(shopId);
+        return bookFoodMapper.toDtos(foods);
+    }
+
 }

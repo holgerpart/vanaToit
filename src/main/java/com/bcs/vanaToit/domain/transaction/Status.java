@@ -1,7 +1,12 @@
 package com.bcs.vanaToit.domain.transaction;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "status")
 public class Status {
@@ -12,21 +17,4 @@ public class Status {
 
     @Column(name = "description", nullable = false, length = 50)
     private String description;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 }

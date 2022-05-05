@@ -1,6 +1,7 @@
 package com.bcs.vanaToit.service.food;
 
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodDto;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +24,14 @@ public class FoodController {
 
     @PostMapping
     @Operation(summary = "Kaubarea lisamine")
-    public void addFood(@RequestBody FoodRequest request) {
-        foodService.addFood(request);
+    public void addShopFood(@RequestBody FoodRequest request) {
+        foodService.addShopFood(request);
     }
 
     @GetMapping("/all")
     @Operation(summary = "Väljasta poe laoseis")
-    public List<ShopFoodDto> getStockByShop(ShopFoodRequest request) {
-        return foodService.getStockByShop(request);
+    public List<ShopFoodDto> getShopFoodByShop(ShopFoodRequest request) {
+        return foodService.getShopFoodByShop(request);
     }
 
     @GetMapping("/shopid")
@@ -40,15 +41,14 @@ public class FoodController {
     }
 
     @PostMapping("/bookfood")
-    @Operation(summary = "Broneeringu lisamine ")
+    @Operation(summary = "Broneeringu lisamine")
     public void addBookFood(@RequestBody BookFoodRequest request) {
-        foodService.addBook(request);
+        foodService.addBookFood(request);
     }
 
     @GetMapping("/cityname")
     @Operation(summary = "Linna järgi toote leidnmine")
-    public List<ShopFoodDto> findShopFoodByCity(CityRequest request){
-
+    public List<ShopFoodDto> findShopFoodByCity(CityRequest request) {
         return foodService.findShopFoodByCity(request);
     }
 
@@ -58,19 +58,34 @@ public class FoodController {
     }
 
     @GetMapping("/articlename")
-    @Operation(summary="Tootenimetuse järgi toodete leidmine ")
-    public List<ShopFoodDto> findShopFoodByFoodArticle(FoodArticleRequest request){
+    @Operation(summary = "Tootenimetuse järgi toodete leidmine ")
+    public List<ShopFoodDto> findShopFoodByFoodArticle(FoodArticleRequest request) {
         return foodService.findShopFoodByFoodArticle(request);
     }
+
     @GetMapping("/typename")
-    @Operation(summary= "toote tüübi järgi toodete leidmine")
-    public List<ShopFoodDto>findShopFoodByFoodType(FoodTypeRequest request){
+    @Operation(summary = "toote tüübi järgi toodete leidmine")
+    public List<ShopFoodDto> findShopFoodByFoodType(FoodTypeRequest request) {
         return foodService.findShopFoodByFoodType(request);
     }
 
     @PostMapping("/shopfoodquantity")
     @Operation(summary = "Id järgi kaubakoguse muutmine")
-    public void updateShopFoodById(FoodIdRequest request){
+    public void updateShopFoodById(FoodIdRequest request) {
         foodService.updateShopFoodById(request);
     }
+
+    @GetMapping("/foods")
+    @Operation(summary = "Leia broneeringud poe id järgi")
+    public List<BookFoodDto> findAllActiveOrdersByShopId(@RequestParam Integer shopId) {
+        return foodService.findAllActiveOrdersByShopId(shopId);
+    }
+
+    @GetMapping("/stock")
+    @Operation(summary = "Väljasta ühe toote laoseis poe Id ja toote järgi")
+    public List<ShopFoodDto> getItemStockByShopId(ShopFoodStockRequest request) {
+        return foodService.getItemStockByShopId(request);
+
+    }
 }
+
