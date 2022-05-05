@@ -12,7 +12,7 @@ public interface ShopFoodMapper {
     @Mapping(source = "foodName", target = "food.name")
     @Mapping(source = "unitId", target = "unit.id")
     @Mapping(source = "unitName", target = "unit.name")
-    ShopFood shopFoodDtoToShopFood(ShopFoodDto shopFoodDto);
+    ShopFood toEntity(ShopFoodDto shopFoodDto);
 
     @InheritInverseConfiguration(name = "shopFoodDtoToShopFood")
     ShopFoodDto toDto(ShopFood shopFood);

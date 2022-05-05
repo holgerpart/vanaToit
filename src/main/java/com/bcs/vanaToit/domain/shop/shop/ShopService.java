@@ -20,15 +20,7 @@ public class ShopService {
     private ValidationService validationService;
 
     @Resource
-    private CityService cityService;
-
-    @Resource
     private ProfileService profileService;
-
-    public List<Shop> findShops(List profileId){
-        return shopRepository.findByProfile(profileId);
-
-    }
 
     public void addShop(ShopRequest request) {
         validationService.shopExists(request);

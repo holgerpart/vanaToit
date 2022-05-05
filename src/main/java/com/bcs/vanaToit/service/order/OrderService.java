@@ -1,0 +1,33 @@
+package com.bcs.vanaToit.service.order;
+
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFood;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodDto;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodMapper;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@Service
+public class OrderService {
+
+    @Resource
+    private BookFoodService bookFoodService;
+
+    @Resource
+    private BookFoodMapper bookFoodMapper;
+
+    public void addBookFood(BookFoodRequest request) {
+        bookFoodService.addBookFood(request);
+    }
+
+    public List<BookFoodDto> getBookFoods() {
+        return bookFoodService.getBookFoods();
+    }
+
+    public List<BookFoodDto> findAllActiveOrdersByShopId(Integer shopId) {
+        List<BookFood> foods = bookFoodService.findAllActiveOrdersByShopId(shopId);
+        return bookFoodMapper.toDtos(foods);
+    }
+}

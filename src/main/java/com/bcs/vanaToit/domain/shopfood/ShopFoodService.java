@@ -53,29 +53,29 @@ public class ShopFoodService {
 
     }
 
-    public List<ShopFoodDto> getShopFoodByShop(ShopFoodRequest request) {
-        List<ShopFood> stock = shopFoodRepository.findAllByShopName(request.getShopName());
+    public List<ShopFoodDto> getShopFoodByShop(String shop) {
+        List<ShopFood> stock = shopFoodRepository.findAllByShopName(shop);
         return shopFoodMapper.toDtos(stock);
 
         }
 
-    public List<ShopFoodDto> findShopFoodByCity(CityRequest request) {
-        List<ShopFood> shopFoods = shopFoodRepository.findAllByShopName(request.getCity());
+    public List<ShopFoodDto> findShopFoodByCity(String city) {
+        List<ShopFood> shopFoods = shopFoodRepository.findAllByShopName(city);
         return shopFoodMapper.toDtos(shopFoods);
     }
 
-    public List<ShopFoodDto> getStockByShopId(ShopFoodRequestById request) {
-        List<ShopFood> stock = shopFoodRepository.findByShopId(request.getShopId());
+    public List<ShopFoodDto> getStockByShopId(Integer shopId) {
+        List<ShopFood> stock = shopFoodRepository.findByShopId(shopId);
         return shopFoodMapper.toDtos(stock);
     }
 
-    public List<ShopFoodDto> findShopFoodByFoodArticle(FoodArticleRequest request) {
-        List<ShopFood> shopFoods =shopFoodRepository.findShopsByFoodName(request.getFoodArticle());
+    public List<ShopFoodDto> findShopFoodByFoodArticle(String article) {
+        List<ShopFood> shopFoods =shopFoodRepository.findShopsByFoodName(article);
         return shopFoodMapper.toDtos(shopFoods);
     }
 
-    public List<ShopFoodDto> findShopFoodByFoodType(FoodTypeRequest request) {
-        List<ShopFood> shopFoods = shopFoodRepository.findByFoodByTypeName(request.getTypeName());
+    public List<ShopFoodDto> findShopFoodByFoodType(String type) {
+        List<ShopFood> shopFoods = shopFoodRepository.findByFoodByTypeName(type);
         return shopFoodMapper.toDtos(shopFoods);
     }
 
@@ -83,7 +83,7 @@ public class ShopFoodService {
         shopFoodRepository.updateQuantityById(request.getQuantity(),request.getFoodId());
     }
 
-    public List<ShopFoodDto> getItemStockByShopId(ShopFoodStockRequest request) {
+    public List<ShopFoodDto> getItemStockByShopId(StockRequest request) {
         List<ShopFood> stock = shopFoodRepository.getItemStockByShopId(request.getShopId(),request.getArticleName());
         return shopFoodMapper.toDtos(stock);
     }

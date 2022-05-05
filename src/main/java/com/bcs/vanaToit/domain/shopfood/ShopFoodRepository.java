@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ShopFoodRepository extends JpaRepository<ShopFood, Integer> {
-    @Query("select s from ShopFood s where upper(s.shop.name) = upper(?1)")
-    ShopFood findByShopName(String name);
 
     @Query("select s from ShopFood s where upper(s.shop.name) = upper(?1)")
     List<ShopFood> findAllByShopName(String name);
@@ -23,17 +21,6 @@ public interface ShopFoodRepository extends JpaRepository<ShopFood, Integer> {
 
     @Query("select s from ShopFood s where s.shop.id = ?1")
     List<ShopFood> findByShopId(Integer id);
-
-    @Query("select s from ShopFood s where upper(s.shop.profile.city.name) = upper(?1)")
-    List<ShopFood> findByCity(String city);
-
-    @Query("select s from ShopFood s where upper(s.food.name) = upper(?1)")
-    List<ShopFood> findByFoodName(String name);
-
-    @Transactional
-    @Modifying
-    @Query("update ShopFood s set s.quantity = ?1 where upper(s.shop) = upper(?2) and upper(s.food) = upper(?3)")
-    int updateQuantityByShopAndFoodAllIgnoreCase(Integer quantity, Shop shop, Food food);
 
     @Transactional
     @Modifying
@@ -51,10 +38,6 @@ public interface ShopFoodRepository extends JpaRepository<ShopFood, Integer> {
 
     @Query("select s from ShopFood s where upper(s.food.type.name) = upper(?1)")
     List<ShopFood> findByFoodByTypeName(String name);
-
-    @Modifying
-    @Query("update ShopFood s set s.quantity = ?1, s.comments = ?2 where s.id = ?3")
-    int updateQuantityAndCommentsById(Integer quantity, String comments, Integer id);
 
     @Query("select s from ShopFood s where s.shop.id = ?1 and upper(s.food.name) = upper(?2)")
     List<ShopFood>getItemStockByShopId (Integer id, String name);

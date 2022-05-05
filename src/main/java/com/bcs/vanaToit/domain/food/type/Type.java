@@ -1,7 +1,11 @@
 package com.bcs.vanaToit.domain.food.type;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+@Getter
+@Setter
 @Entity
 @Table(name = "type")
 public class Type {
@@ -12,21 +16,5 @@ public class Type {
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 }

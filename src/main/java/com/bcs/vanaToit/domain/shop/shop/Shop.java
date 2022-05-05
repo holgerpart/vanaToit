@@ -1,9 +1,12 @@
 package com.bcs.vanaToit.domain.shop.shop;
 
 import com.bcs.vanaToit.domain.shop.profile.Profile;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "shop")
 public class Shop {
@@ -18,29 +21,5 @@ public class Shop {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "profile_id", nullable = false)
     private Profile profile;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
 
 }

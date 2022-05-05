@@ -12,12 +12,6 @@ public class AuthorizedUserService {
     @Resource
     AuthorizedUserRepository authorizedUserRepository;
 
-    public Shop getShop(Integer userId) {
-        AuthorizedUser authorizedUser = authorizedUserRepository.findByUserId(userId);
-        Shop shop = authorizedUser.getShop();
-        return shop;
-    }
-
     public List<AuthorizedUser> getAuthorizedShops(Integer userId) {
       return  authorizedUserRepository.findUserAuthorizedShops(userId);
     }

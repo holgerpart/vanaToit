@@ -1,14 +1,12 @@
 package com.bcs.vanaToit.domain.transaction.bookfood;
 
-import com.bcs.vanaToit.domain.food.food.Food;
-import com.bcs.vanaToit.domain.shop.shop.Shop;
 import com.bcs.vanaToit.domain.shopfood.ShopFood;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodRepository;
-import com.bcs.vanaToit.domain.transaction.Status;
-import com.bcs.vanaToit.domain.transaction.StatusRepository;
+import com.bcs.vanaToit.domain.transaction.status.Status;
+import com.bcs.vanaToit.domain.transaction.status.StatusRepository;
 import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
-import com.bcs.vanaToit.service.food.BookFoodRequest;
+import com.bcs.vanaToit.service.order.BookFoodRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

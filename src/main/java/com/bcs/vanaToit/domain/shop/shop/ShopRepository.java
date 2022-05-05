@@ -11,7 +11,4 @@ public interface ShopRepository extends JpaRepository<Shop, Integer> {
     @Query("select s from Shop s where s.profile.id = ?1")
     List<Shop> findByProfile(List profileId);
 
-    @Query("select s from Shop s where s.profile.city.name = ?1")
-    List<Shop> findByProfile_City_Name(String name);
-
 }

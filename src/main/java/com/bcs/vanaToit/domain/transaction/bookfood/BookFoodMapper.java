@@ -12,10 +12,10 @@ public interface BookFoodMapper {
     @Mapping(source = "shopName", target = "shopFood.shop.name")
     @Mapping(source = "foodName", target = "shopFood.food.name")
     @Mapping(source = "status", target = "status.description")
-    BookFood bookFoodDtoToBookFood(BookFoodDto bookFoodDto);
+    BookFood toEntity(BookFoodDto bookFoodDto);
 
     @InheritInverseConfiguration(name = "bookFoodDtoToBookFood")
-    BookFoodDto bookFoodToBookFoodDto(BookFood bookFood);
+    BookFoodDto toDto(BookFood bookFood);
 
     List<BookFoodDto> toDtos(List<BookFood> bookFoods);
 

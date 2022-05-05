@@ -1,7 +1,7 @@
 package com.bcs.vanaToit.domain.transaction.bookfood;
 
 import com.bcs.vanaToit.domain.shopfood.ShopFood;
-import com.bcs.vanaToit.domain.transaction.Status;
+import com.bcs.vanaToit.domain.transaction.status.Status;
 import com.bcs.vanaToit.domain.user.user.User;
 import lombok.Getter;
 import lombok.Setter;

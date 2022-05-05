@@ -1,4 +1,4 @@
-package com.bcs.vanaToit.domain.transaction;
+package com.bcs.vanaToit.domain.transaction.status;
 
 import lombok.Getter;
 import lombok.Setter;
