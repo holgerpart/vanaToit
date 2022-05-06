@@ -5,5 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface CityRepository extends JpaRepository<City, Integer> {
     @Query("select c from City c where upper(c.name) = upper(?1)")
-    City findByNameIgnoreCase(String name);
+    City findByName(String name);
+
+    City findByNameIgnoreCase(String city);
+
 }

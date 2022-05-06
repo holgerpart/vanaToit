@@ -13,6 +13,6 @@ public class CityService {
 
 
     public City getCity(ShopRequest request) {
-        return cityRepository.findByNameIgnoreCase(request.getCityName());
+        return cityRepository.findByName(request.getCityName());
     }
 }
