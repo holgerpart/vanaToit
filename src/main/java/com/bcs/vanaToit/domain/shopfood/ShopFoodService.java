@@ -3,7 +3,7 @@ package com.bcs.vanaToit.domain.shopfood;
 import com.bcs.vanaToit.domain.food.food.FoodRepository;
 import com.bcs.vanaToit.domain.food.unit.UnitRepository;
 import com.bcs.vanaToit.domain.shop.shop.ShopRepository;
-import com.bcs.vanaToit.service.food.*;
+import com.bcs.vanaToit.service.stock.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

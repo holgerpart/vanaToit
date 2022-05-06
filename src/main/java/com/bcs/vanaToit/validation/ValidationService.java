@@ -6,7 +6,7 @@ import com.bcs.vanaToit.domain.shop.shop.ShopRepository;
 import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.infrastructure.exception.BusinessException;
-import com.bcs.vanaToit.service.food.ArticleRequest;
+import com.bcs.vanaToit.service.stock.ArticleRequest;
 import com.bcs.vanaToit.service.login.ShopRequest;
 import com.bcs.vanaToit.service.login.UserRequest;
 import org.springframework.stereotype.Service;

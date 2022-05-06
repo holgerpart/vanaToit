@@ -1,11 +1,8 @@
-package com.bcs.vanaToit.service.food;
+package com.bcs.vanaToit.service.stock;
 
-import com.bcs.vanaToit.domain.food.unit.Unit;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 public class FoodRequest {

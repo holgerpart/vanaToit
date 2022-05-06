@@ -1,6 +1,5 @@
-package com.bcs.vanaToit.service.food;
+package com.bcs.vanaToit.service.stock;
 
-import com.bcs.vanaToit.domain.food.type.Type;
 import lombok.Data;
 
 @Data

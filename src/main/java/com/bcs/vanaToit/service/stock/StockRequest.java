@@ -1,4 +1,4 @@
-package com.bcs.vanaToit.service.food;
+package com.bcs.vanaToit.service.stock;
 
 import lombok.Data;
 

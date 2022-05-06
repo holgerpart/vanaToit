@@ -2,7 +2,7 @@ package com.bcs.vanaToit.domain.food.food;
 
 import com.bcs.vanaToit.domain.food.type.Type;
 import com.bcs.vanaToit.domain.food.type.TypeRepository;
-import com.bcs.vanaToit.service.food.ArticleRequest;
+import com.bcs.vanaToit.service.stock.ArticleRequest;
 import com.bcs.vanaToit.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
