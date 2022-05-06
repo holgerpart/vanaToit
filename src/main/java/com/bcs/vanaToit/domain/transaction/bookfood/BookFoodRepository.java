@@ -14,9 +14,4 @@ public interface BookFoodRepository extends JpaRepository<BookFood, Integer> {
     @Query("select b from BookFood b where b.user.id = ?1")
     List<BookFood>getCustomerBookedFoods (Integer userId);
 
-    @Transactional
-    @Modifying
-    @Query("update BookFood b set b.quantity = ?1 where b.id = ?2")
-    void updateQuantityById(Integer quantity, Integer id);
-
 }

@@ -59,15 +59,15 @@ public class BookFoodService {
         return bookFoodRepository.getCustomerBookedFoods(userId);
     }
 
-    public BookFoodDto updateOrder(OrderUpdateRequest request) {
+    public void updateOrder(OrderUpdateRequest request) {
         BookFood order = bookFoodRepository.getById(request.getOrderId());
         Integer difference = order.getQuantity() - request.getQuantity();
-        bookFoodRepository.updateQuantityById(request.getQuantity(), request.getOrderId());
-        Integer stockId = order.getShopFood().getId();
-        Integer stock = shopFoodRepository.getById(stockId).getQuantity();
-        stock = stock + difference;
-        shopFoodRepository.updateQuantityById(stock,stockId);
-        BookFood newOrder = bookFoodRepository.getById(request.getOrderId());
-        return bookFoodMapper.toDto(newOrder);
+        order.setQuantity(request.getQuantity());
+        bookFoodRepository.save(order);
+        ShopFood shopFood = shopFoodRepository.getById(order.getShopFood().getId());
+        Integer newStockQuantity = shopFood.getQuantity() + difference;
+        shopFood.setQuantity(newStockQuantity);
+        shopFoodRepository.save(shopFood);
+        bookFoodMapper.toDto(order);
     }
 }

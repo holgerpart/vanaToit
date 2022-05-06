@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class OrderUpdateRequest {
     private Integer orderId;
-    private Integer stockId;
     private Integer quantity;
 
 }

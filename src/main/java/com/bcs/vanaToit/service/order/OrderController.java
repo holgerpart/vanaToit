@@ -40,7 +40,7 @@ public class OrderController {
 
     @PostMapping("/updateorder")
     @Operation(summary = "Uuenda broneeringut")
-    public BookFoodDto updateOrder(@RequestBody OrderUpdateRequest request) {
-        return orderService.updateOrder(request);
+    public void updateOrder(@RequestBody OrderUpdateRequest request) {
+        orderService.updateOrder(request);
     }
 }

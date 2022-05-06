@@ -36,7 +36,7 @@ public class OrderService {
         return bookFoodMapper.toDtos(foods);
     }
 
-    public BookFoodDto updateOrder(OrderUpdateRequest request) {
-        return bookFoodService.updateOrder(request);
+    public void updateOrder(OrderUpdateRequest request) {
+        bookFoodService.updateOrder(request);
     }
 }
