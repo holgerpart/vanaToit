@@ -7,6 +7,7 @@ import com.bcs.vanaToit.domain.transaction.status.StatusRepository;
 import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.service.order.BookFoodRequest;
+import com.bcs.vanaToit.service.order.OrderUpdateRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -56,5 +57,17 @@ public class BookFoodService {
 
     public List<BookFood> findAllActiveOrderByCustomerId(Integer userId) {
         return bookFoodRepository.getCustomerBookedFoods(userId);
+    }
+
+    public BookFoodDto updateOrder(OrderUpdateRequest request) {
+        BookFood order = bookFoodRepository.getById(request.getOrderId());
+        Integer difference = order.getQuantity() - request.getQuantity();
+        bookFoodRepository.updateQuantityById(request.getQuantity(), request.getOrderId());
+        Integer stockId = order.getShopFood().getId();
+        Integer stock = shopFoodRepository.getById(stockId).getQuantity();
+        stock = stock + difference;
+        shopFoodRepository.updateQuantityById(stock,stockId);
+        BookFood newOrder = bookFoodRepository.getById(request.getOrderId());
+        return bookFoodMapper.toDto(newOrder);
     }
 }

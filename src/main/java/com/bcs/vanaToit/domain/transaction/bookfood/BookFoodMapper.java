@@ -11,6 +11,7 @@ public interface BookFoodMapper {
     @Mapping(source = "lastName", target = "user.contact.lastName")
     @Mapping(source = "shopName", target = "shopFood.shop.name")
     @Mapping(source = "foodName", target = "shopFood.food.name")
+    @Mapping(source = "quantity", target = "quantity")
     @Mapping(source = "status", target = "status.description")
     BookFood toEntity(BookFoodDto bookFoodDto);
 

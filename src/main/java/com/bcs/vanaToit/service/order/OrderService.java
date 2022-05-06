@@ -35,4 +35,8 @@ public class OrderService {
         List<BookFood> foods = bookFoodService.findAllActiveOrderByCustomerId(userId);
         return bookFoodMapper.toDtos(foods);
     }
+
+    public BookFoodDto updateOrder(OrderUpdateRequest request) {
+        return bookFoodService.updateOrder(request);
+    }
 }
