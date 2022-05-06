@@ -30,4 +30,9 @@ public class OrderService {
         List<BookFood> foods = bookFoodService.findAllActiveOrdersByShopId(shopId);
         return bookFoodMapper.toDtos(foods);
     }
+
+    public List<BookFoodDto> findAllActiveOrderByCustomerId(Integer userId) {
+        List<BookFood> foods = bookFoodService.findAllActiveOrderByCustomerId(userId);
+        return bookFoodMapper.toDtos(foods);
+    }
 }

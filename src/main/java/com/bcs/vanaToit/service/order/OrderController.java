@@ -31,5 +31,9 @@ public class OrderController {
     public List<BookFoodDto> findAllActiveOrdersByShopId(@RequestParam Integer shopId) {
         return orderService.findAllActiveOrdersByShopId(shopId);
     }
-
+    @GetMapping("/customerfoods")
+    @Operation(summary = "/Leia broneeringud user id järgi")
+    public List<BookFoodDto> findAllActiveOrderByCustomerId(@RequestParam Integer userId){
+        return orderService.findAllActiveOrderByCustomerId(userId);
+    }
 }

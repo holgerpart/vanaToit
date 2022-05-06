@@ -9,5 +9,7 @@ public interface BookFoodRepository extends JpaRepository<BookFood, Integer> {
     @Query("select b from BookFood b where b.shopFood.shop.id = ?1")
     List<BookFood> getBookFoods(Integer shopId);
 
+    @Query("select b from BookFood b where b.user.id = ?1")
+    List<BookFood>getCustomerBookedFoods (Integer userId);
 
 }

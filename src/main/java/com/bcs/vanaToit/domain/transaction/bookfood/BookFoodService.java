@@ -53,4 +53,8 @@ public class BookFoodService {
     public List<BookFood> findAllActiveOrdersByShopId(Integer shopId) {
         return bookFoodRepository.getBookFoods(shopId);
     }
+
+    public List<BookFood> findAllActiveOrderByCustomerId(Integer userId) {
+        return bookFoodRepository.getCustomerBookedFoods(userId);
+    }
 }
