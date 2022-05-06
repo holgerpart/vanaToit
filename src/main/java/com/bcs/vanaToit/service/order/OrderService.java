@@ -39,4 +39,8 @@ public class OrderService {
     public void updateOrder(OrderUpdateRequest request) {
         bookFoodService.updateOrder(request);
     }
+
+    public void updateStatus(StatusUpdateRequest request) {
+        bookFoodService.updateStatus(request);
+    }
 }

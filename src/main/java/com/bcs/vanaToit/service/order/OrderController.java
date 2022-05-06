@@ -43,4 +43,11 @@ public class OrderController {
     public void updateOrder(@RequestBody OrderUpdateRequest request) {
         orderService.updateOrder(request);
     }
+
+    @PostMapping("/status")
+    @Operation(summary = "Muuda broneeringu staatust")
+    public void updateStatus(@RequestBody StatusUpdateRequest request) {
+        orderService.updateStatus(request);
+
+    }
 }

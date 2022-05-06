@@ -8,6 +8,7 @@ import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.service.order.BookFoodRequest;
 import com.bcs.vanaToit.service.order.OrderUpdateRequest;
+import com.bcs.vanaToit.service.order.StatusUpdateRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -69,5 +70,12 @@ public class BookFoodService {
         shopFood.setQuantity(newStockQuantity);
         shopFoodRepository.save(shopFood);
         bookFoodMapper.toDto(order);
+    }
+
+    public void updateStatus(StatusUpdateRequest request) {
+        BookFood order = bookFoodRepository.getById(request.getOrderId());
+        Status status = statusRepository.findByDescription(request.getStatusName());
+        order.setStatus(status);
+        bookFoodRepository.save(order);
     }
 }

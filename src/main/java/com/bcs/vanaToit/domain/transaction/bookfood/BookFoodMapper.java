@@ -6,7 +6,6 @@ import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface BookFoodMapper {
-    @Mapping(source = "id", target = "user.id")
     @Mapping(source = "firstName", target = "user.contact.firstName")
     @Mapping(source = "lastName", target = "user.contact.lastName")
     @Mapping(source = "shopName", target = "shopFood.shop.name")
