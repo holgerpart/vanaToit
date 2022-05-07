@@ -22,12 +22,27 @@ public class ShopService {
     @Resource
     private ProfileService profileService;
 
+    @Resource
+    private ShopMapper shopMapper;
+
     public void addShop(ShopRequest request) {
         validationService.shopExists(request);
         Profile profile = profileService.addProfile(request);
         Shop shop = new Shop();
         shop.setName(request.getShopName());
         shop.setProfile(profile);
+        shopRepository.save(shop);
+    }
+
+    public List<ShopDto> getShops() {
+        return shopMapper.toDtos(shopRepository.findAll());
+    }
+
+    public void updateShop(ShopDto request) {
+        Profile profile = profileService.updateProfile(request);
+        Shop shop = shopRepository.getById(request.getId());
+        shop.setProfile(profile);
+        shop.setName(request.getName());
         shopRepository.save(shop);
     }
 }

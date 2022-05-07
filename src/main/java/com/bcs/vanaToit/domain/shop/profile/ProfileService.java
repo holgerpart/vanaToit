@@ -2,6 +2,10 @@ package com.bcs.vanaToit.domain.shop.profile;
 
 
 import com.bcs.vanaToit.domain.shop.city.CityService;
+import com.bcs.vanaToit.domain.shop.shop.Shop;
+import com.bcs.vanaToit.domain.shop.shop.ShopDto;
+import com.bcs.vanaToit.domain.shop.shop.ShopRepository;
+import com.bcs.vanaToit.domain.shop.shop.ShopService;
 import com.bcs.vanaToit.service.login.ShopRequest;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +21,8 @@ public class ProfileService {
     @Resource
     private CityService cityService;
 
-    public List<Profile> getProfileId(Integer cityId){
-        List<Profile> profileId = profileRepository.findByCityId(cityId);
-        return profileId;
-    }
+    @Resource
+    private ShopRepository shopRepository;
 
     public Profile addProfile(ShopRequest request) {
         Profile profile = new Profile();
@@ -31,5 +33,13 @@ public class ProfileService {
         profile.setLatitude(request.getLatitude());
         profileRepository.save(profile);
         return profileRepository.findByAadress(request.getAadress());
+    }
+
+    public Profile updateProfile(ShopDto request) {
+        Profile profile = shopRepository.getById(request.getId()).getProfile();
+        profile.setAadress(request.getAadress());
+        profile.setTelNumber(request.getTelNumber());
+        profileRepository.save(profile);
+        return profile;
     }
 }

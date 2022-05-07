@@ -1,5 +1,6 @@
 package com.bcs.vanaToit.service.login;
 
+import com.bcs.vanaToit.domain.shop.shop.ShopDto;
 import com.bcs.vanaToit.domain.shop.shop.ShopService;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserService;
 import com.bcs.vanaToit.domain.user.contact.ContactService;
@@ -62,5 +63,13 @@ public class LoginService {
 
     public void addShop(ShopRequest request) {
         shopService.addShop(request);
+    }
+
+    public List<ShopDto> getShops() {
+        return shopService.getShops();
+    }
+
+    public void updateShop(ShopDto request) {
+        shopService.updateShop(request);
     }
 }
