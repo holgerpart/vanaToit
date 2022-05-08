@@ -1,6 +1,7 @@
 package com.bcs.vanaToit.domain.shop.profile;
 
 
+import com.bcs.vanaToit.domain.shop.city.CityRepository;
 import com.bcs.vanaToit.domain.shop.city.CityService;
 import com.bcs.vanaToit.domain.shop.shop.Shop;
 import com.bcs.vanaToit.domain.shop.shop.ShopDto;
@@ -24,6 +25,9 @@ public class ProfileService {
     @Resource
     private ShopRepository shopRepository;
 
+    @Resource
+    private CityRepository cityRepository;
+
     public Profile addProfile(ShopRequest request) {
         Profile profile = new Profile();
         profile.setAadress(request.getAadress());
@@ -39,6 +43,7 @@ public class ProfileService {
         Profile profile = shopRepository.getById(request.getId()).getProfile();
         profile.setAadress(request.getAadress());
         profile.setTelNumber(request.getTelNumber());
+        profile.setCity(cityRepository.findByName(request.getCityName()));
         profileRepository.save(profile);
         return profile;
     }
