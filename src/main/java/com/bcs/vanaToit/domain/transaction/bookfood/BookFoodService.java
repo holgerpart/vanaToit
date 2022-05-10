@@ -9,6 +9,7 @@ import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.service.order.BookFoodRequest;
 import com.bcs.vanaToit.service.order.OrderUpdateRequest;
 import com.bcs.vanaToit.service.order.StatusUpdateRequest;
+import com.bcs.vanaToit.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -32,7 +33,11 @@ public class BookFoodService {
     @Resource
     private BookFoodMapper bookFoodMapper;
 
+    @Resource
+    private ValidationService validationService;
+
     public void addBookFood(BookFoodRequest request) {
+        validationService.validQuantity(request);
         BookFood bookFood = new BookFood();
         ShopFood shopFood = shopFoodRepository.getById(request.getShopFoodId());
         Integer quantity = shopFood.getQuantity() - request.getQuantity();

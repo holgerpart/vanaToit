@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
+
 
 @Getter
 @Setter
@@ -26,6 +28,7 @@ public class BookFood {
     @JoinColumn(name = "shop_food_id", nullable = false)
     private ShopFood shopFood;
 
+    @Positive
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 

@@ -3,9 +3,12 @@ package com.bcs.vanaToit.validation;
 
 import com.bcs.vanaToit.domain.food.food.FoodRepository;
 import com.bcs.vanaToit.domain.shop.shop.ShopRepository;
+import com.bcs.vanaToit.domain.shopfood.ShopFood;
+import com.bcs.vanaToit.domain.shopfood.ShopFoodRepository;
 import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.infrastructure.exception.BusinessException;
+import com.bcs.vanaToit.service.order.BookFoodRequest;
 import com.bcs.vanaToit.service.stock.ArticleRequest;
 import com.bcs.vanaToit.service.login.ShopRequest;
 import com.bcs.vanaToit.service.login.UserRequest;
@@ -17,6 +20,7 @@ import java.util.Optional;
 @Service
 public class ValidationService {
 
+    public static final String VIGA_ANDMETES = "Viga andmetes";
     @Resource
     private FoodRepository foodRepository;
 
@@ -25,6 +29,9 @@ public class ValidationService {
 
     @Resource
     private ShopRepository shopRepository;
+
+    @Resource
+    private ShopFoodRepository shopFoodRepository;
 
     public static final String ACCOUNT_NOT_EXISTS = "Sellist kontot ei eksisteeri";
     public static final String CUSTOMER_NOT_EXISTS = "Sellist klienti ei eksisteeri";
@@ -35,26 +42,37 @@ public class ValidationService {
 
     public void userNotExists(Optional<User> user) {
         if (user.isEmpty()) {
-            throw new BusinessException("Viga andmetes", "Viga kasutajanime või parooli sisetamisel");
+            throw new BusinessException(VIGA_ANDMETES, "Viga kasutajanime või parooli sisetamisel");
         }
 
     }
 
     public void userExists(UserRequest request) {
         if (userRepository.existsByName(request.getName())) {
-            throw new BusinessException("Viga andmetes", "Selline kasutajanimi on juba olemas");
+            throw new BusinessException(VIGA_ANDMETES, "Selline kasutajanimi on juba olemas");
         }
     }
 
     public void articleExists(ArticleRequest request) {
         if(foodRepository.articleExists(request.getArticleName())){
-            throw new BusinessException("Viga andmetes", "See artikkel on juba olemas");
+            throw new BusinessException(VIGA_ANDMETES, "See artikkel on juba olemas");
         }
     }
 
     public void shopExists(ShopRequest request) {
         if (shopRepository.existsByName(request.getShopName())) {
-            throw new BusinessException("Viga andmetes", "See pood on juba olemas");
+            throw new BusinessException(VIGA_ANDMETES, "See pood on juba olemas");
+        }
+    }
+
+    public void validQuantity(BookFoodRequest request) {
+        Integer quantity = request.getQuantity();
+        if (quantity < 1) {
+            throw new BusinessException(VIGA_ANDMETES, "Kogus peab olema positiivne");
+        }
+        Integer remainingQuantity = shopFoodRepository.getById(request.getShopFoodId()).getQuantity();
+        if (remainingQuantity < quantity) {
+            throw new BusinessException(VIGA_ANDMETES, "Saadaolev kogus ei ole broneerimiseks piisav.");
         }
     }
 
