@@ -1,6 +1,8 @@
 package com.bcs.vanaToit.service.stock;
 
 import com.bcs.vanaToit.domain.food.food.ArticleService;
+import com.bcs.vanaToit.domain.food.food.FoodDto;
+import com.bcs.vanaToit.domain.shop.shop.ShopDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodService;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUser;
@@ -35,8 +37,11 @@ public class StockService {
         shopFoodService.addShopFood(request);
     }
 
-    public List<ShopFoodDto> getShopFoodByShop(String shop) {
+    public void addStockByName(StockNameRequest request) {
+        shopFoodService.addStockByName(request);
+    }
 
+    public List<ShopFoodDto> getShopFoodByShop(String shop) {
         return shopFoodService.getShopFoodByShop(shop);
     }
 
@@ -70,6 +75,7 @@ public class StockService {
         return shopFoodService.getItemStockByShopId(request);
     }
 
-
-
+    public List<FoodDto> getArticles() {
+        return articleService.getArticles();
+    }
 }

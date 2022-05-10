@@ -1,5 +1,6 @@
 package com.bcs.vanaToit.domain.shopfood;
 
+import com.bcs.vanaToit.domain.food.food.Food;
 import com.bcs.vanaToit.domain.food.food.FoodRepository;
 import com.bcs.vanaToit.domain.food.unit.UnitRepository;
 import com.bcs.vanaToit.domain.shop.city.City;
@@ -58,6 +59,28 @@ public class ShopFoodService {
 
     }
 
+    public void addStockByName(StockNameRequest request) {
+        Food food = foodRepository.findByName(request.getFoodName());
+        Optional<ShopFood> shopFood = shopFoodRepository.findShopFood(request.getShopId(), food.getId());
+        ShopFood newFood = new ShopFood();
+        if (shopFood.isPresent()) {
+            Integer quantity = shopFood.get().getQuantity() + request.getQuantity();
+            String comments = shopFood.get().getComments();
+//            shopFoodRepository.updateQuantityById(quantity, shopFood.get().getId());
+            shopFoodRepository.updateCommentsAndQuantityById(comments, quantity, shopFood.get().getId());
+        } else {
+            newFood.setFood(foodRepository.getById(food.getId()));
+            newFood.setShop(shopRepository.getById(request.getShopId()));
+            newFood.setQuantity(request.getQuantity());
+            newFood.setDateTime(Instant.now());
+            newFood.setComments(request.getComments());
+            newFood.setUnit(unitRepository.findUnit(request.getUnit()));
+            newFood.setExpirationDate(request.getExpirationDate());
+            newFood.setIsAvailable(true);
+            shopFoodRepository.save(newFood);
+        }
+    }
+
     public List<ShopFoodDto> getShopFoodByShop(String shop) {
         List<ShopFood> stock = shopFoodRepository.findAllByShopName(shop);
         return shopFoodMapper.toDtos(stock);
@@ -93,5 +116,7 @@ public class ShopFoodService {
         List<ShopFood> stock = shopFoodRepository.getItemStockByShopId(request.getShopId(),request.getArticleName());
         return shopFoodMapper.toDtos(stock);
     }
+
+
 }
 

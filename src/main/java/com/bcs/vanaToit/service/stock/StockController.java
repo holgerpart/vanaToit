@@ -1,5 +1,7 @@
 package com.bcs.vanaToit.service.stock;
 
+import com.bcs.vanaToit.domain.food.food.FoodDto;
+import com.bcs.vanaToit.domain.shop.shop.ShopDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,9 +24,15 @@ public class StockController {
     }
 
     @PostMapping
-    @Operation(summary = "Kaubarea lisamine")
+    @Operation(summary = "Kaubarea lisamine toidu ID järgi")
     public void addStock(@RequestBody FoodRequest request) {
         stockService.addShopFood(request);
+    }
+
+    @PostMapping("/name")
+    @Operation(summary = "Kaubarea lisamine toidu nime järgi")
+    public void addStockByName(@RequestBody StockNameRequest request) {
+        stockService.addStockByName(request);
     }
 
     @PostMapping("/stock")
@@ -73,6 +81,12 @@ public class StockController {
     @Operation(summary = "Väljasta ühe toote laoseis poe Id ja toote järgi")
     public List<ShopFoodDto> getItemStockByShopId(StockRequest request) {
         return stockService.getItemStockByShopId(request);
+    }
+
+    @GetMapping("/articles")
+    @Operation(summary = "Tagastab artiklite nimekirja")
+    public List<FoodDto> getArticles() {
+        return stockService.getArticles();
     }
 }
 

@@ -7,6 +7,7 @@ import com.bcs.vanaToit.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ArticleService {
@@ -20,6 +21,9 @@ public class ArticleService {
     @Resource
     private TypeRepository typeRepository;
 
+    @Resource
+    private FoodMapper foodMapper;
+
     public void addArticle(ArticleRequest request) {
         validationService.articleExists(request);
         Food article = new Food();
@@ -29,4 +33,7 @@ public class ArticleService {
         foodRepository.save(article);
     }
 
+    public List<FoodDto> getArticles() {
+        return foodMapper.toDtos(foodRepository.findAll());
+    }
 }
