@@ -18,7 +18,7 @@ public class OrderService {
     @Resource
     private BookFoodMapper bookFoodMapper;
 
-    public void addBookFood(BookFoodRequest request) {
+    public void addBookFood(OrderRequest request) {
         bookFoodService.addBookFood(request);
     }
 

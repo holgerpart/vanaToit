@@ -3,7 +3,7 @@ package com.bcs.vanaToit.service.order;
 import lombok.Data;
 
 @Data
-public class BookFoodRequest {
+public class OrderRequest {
 
     private Integer userId;
     private Integer shopFoodId;

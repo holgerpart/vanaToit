@@ -5,10 +5,13 @@ import com.bcs.vanaToit.domain.food.food.FoodRepository;
 import com.bcs.vanaToit.domain.shop.shop.ShopRepository;
 import com.bcs.vanaToit.domain.shopfood.ShopFood;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodRepository;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFood;
+import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodRepository;
 import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.infrastructure.exception.BusinessException;
-import com.bcs.vanaToit.service.order.BookFoodRequest;
+import com.bcs.vanaToit.service.order.OrderRequest;
+import com.bcs.vanaToit.service.order.OrderUpdateRequest;
 import com.bcs.vanaToit.service.stock.ArticleRequest;
 import com.bcs.vanaToit.service.login.ShopRequest;
 import com.bcs.vanaToit.service.login.UserRequest;
@@ -33,6 +36,9 @@ public class ValidationService {
     @Resource
     private ShopFoodRepository shopFoodRepository;
 
+    @Resource
+    private BookFoodRepository bookFoodRepository;
+
     public static final String ACCOUNT_NOT_EXISTS = "Sellist kontot ei eksisteeri";
     public static final String CUSTOMER_NOT_EXISTS = "Sellist klienti ei eksisteeri";
     public static final String DEPOSIT_OVER_LIMIT = "Deposiidi limiit on ületatud";
@@ -54,7 +60,7 @@ public class ValidationService {
     }
 
     public void articleExists(ArticleRequest request) {
-        if(foodRepository.articleExists(request.getArticleName())){
+        if (foodRepository.articleExists(request.getArticleName())) {
             throw new BusinessException(VIGA_ANDMETES, "See artikkel on juba olemas");
         }
     }
@@ -65,7 +71,7 @@ public class ValidationService {
         }
     }
 
-    public void validQuantity(BookFoodRequest request) {
+    public void validQuantity(OrderRequest request) {
         Integer quantity = request.getQuantity();
         if (quantity < 1) {
             throw new BusinessException(VIGA_ANDMETES, "Kogus peab olema positiivne");
@@ -73,6 +79,20 @@ public class ValidationService {
         Integer remainingQuantity = shopFoodRepository.getById(request.getShopFoodId()).getQuantity();
         if (remainingQuantity < quantity) {
             throw new BusinessException(VIGA_ANDMETES, "Saadaolev kogus ei ole broneerimiseks piisav.");
+        }
+    }
+
+    public void validUpdateQuantity(OrderUpdateRequest request) {
+        Integer quantity = request.getQuantity();
+        if (quantity < 1) {
+            throw new BusinessException(VIGA_ANDMETES, "Kogus peab olema positiivne");
+        }
+        BookFood order = bookFoodRepository.getById(request.getOrderId());
+        ShopFood shopFood = shopFoodRepository.getById(order.getShopFood().getId());
+        Integer addedQuantity = request.getQuantity() - order.getQuantity();
+        Integer remainingQuantity = shopFood.getQuantity();
+        if (remainingQuantity < addedQuantity) {
+            throw new BusinessException(VIGA_ANDMETES, "Saadaolev kogus ei ole broneerimiseks piisav. Saadaval on: " + remainingQuantity);
         }
     }
 

@@ -6,7 +6,7 @@ import com.bcs.vanaToit.domain.transaction.status.Status;
 import com.bcs.vanaToit.domain.transaction.status.StatusRepository;
 import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
-import com.bcs.vanaToit.service.order.BookFoodRequest;
+import com.bcs.vanaToit.service.order.OrderRequest;
 import com.bcs.vanaToit.service.order.OrderUpdateRequest;
 import com.bcs.vanaToit.service.order.StatusUpdateRequest;
 import com.bcs.vanaToit.validation.ValidationService;
@@ -36,7 +36,7 @@ public class BookFoodService {
     @Resource
     private ValidationService validationService;
 
-    public void addBookFood(BookFoodRequest request) {
+    public void addBookFood(OrderRequest request) {
         validationService.validQuantity(request);
         BookFood bookFood = new BookFood();
         ShopFood shopFood = shopFoodRepository.getById(request.getShopFoodId());
@@ -66,11 +66,12 @@ public class BookFoodService {
     }
 
     public void updateOrder(OrderUpdateRequest request) {
+        validationService.validUpdateQuantity(request);
         BookFood order = bookFoodRepository.getById(request.getOrderId());
+        ShopFood shopFood = shopFoodRepository.getById(order.getShopFood().getId());
         Integer difference = order.getQuantity() - request.getQuantity();
         order.setQuantity(request.getQuantity());
         bookFoodRepository.save(order);
-        ShopFood shopFood = shopFoodRepository.getById(order.getShopFood().getId());
         Integer newStockQuantity = shopFood.getQuantity() + difference;
         shopFood.setQuantity(newStockQuantity);
         shopFoodRepository.save(shopFood);

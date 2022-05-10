@@ -16,7 +16,7 @@ public class OrderController {
 
     @PostMapping("/bookfood")
     @Operation(summary = "Broneeringu lisamine")
-    public void addBookFood(@RequestBody BookFoodRequest request) {
+    public void addBookFood(@RequestBody OrderRequest request) {
         orderService.addBookFood(request);
     }
 
