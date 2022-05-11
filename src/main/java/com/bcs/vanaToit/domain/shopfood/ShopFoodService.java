@@ -7,6 +7,7 @@ import com.bcs.vanaToit.domain.shop.city.City;
 import com.bcs.vanaToit.domain.shop.city.CityRepository;
 import com.bcs.vanaToit.domain.shop.shop.ShopRepository;
 import com.bcs.vanaToit.service.stock.*;
+import com.bcs.vanaToit.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -35,17 +36,21 @@ public class ShopFoodService {
     @Resource
     private CityRepository cityRepository;
 
+    @Resource
+    ValidationService validationService;
+
     public void addShopFood(FoodRequest request) {
         Optional<ShopFood> shopFood = shopFoodRepository.findShopFood(request.getShopId(), request.getFoodId());
         ShopFood newFood = new ShopFood();
-
         if (shopFood.isPresent()) {
             Integer quantity = shopFood.get().getQuantity() + request.getQuantity();
             String comments = shopFood.get().getComments();
+            validationService.positiveQuantity(quantity);
 //            shopFoodRepository.updateQuantityById(quantity, shopFood.get().getId());
             shopFoodRepository.updateCommentsAndQuantityById(comments, quantity, shopFood.get().getId());
 
         } else {
+            validationService.positiveQuantity(request.getQuantity());
             newFood.setFood(foodRepository.getById(request.getFoodId()));
             newFood.setShop(shopRepository.getById(request.getShopId()));
             newFood.setQuantity(request.getQuantity());
@@ -65,10 +70,12 @@ public class ShopFoodService {
         ShopFood newFood = new ShopFood();
         if (shopFood.isPresent()) {
             Integer quantity = shopFood.get().getQuantity() + request.getQuantity();
+            validationService.positiveQuantity(quantity);
             String comments = shopFood.get().getComments();
 //            shopFoodRepository.updateQuantityById(quantity, shopFood.get().getId());
             shopFoodRepository.updateCommentsAndQuantityById(comments, quantity, shopFood.get().getId());
         } else {
+            validationService.positiveQuantity(request.getQuantity());
             newFood.setFood(foodRepository.getById(food.getId()));
             newFood.setShop(shopRepository.getById(request.getShopId()));
             newFood.setQuantity(request.getQuantity());
@@ -109,6 +116,7 @@ public class ShopFoodService {
     }
 
     public void updateShopFoodById(FoodIdRequest request) {
+        validationService.positiveQuantity(request.getQuantity());
         shopFoodRepository.updateQuantityById(request.getQuantity(),request.getFoodId());
     }
 

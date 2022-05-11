@@ -77,22 +77,28 @@ public class ValidationService {
             throw new BusinessException(VIGA_ANDMETES, "Kogus peab olema positiivne");
         }
         Integer remainingQuantity = shopFoodRepository.getById(request.getShopFoodId()).getQuantity();
-        if (remainingQuantity < quantity) {
-            throw new BusinessException(VIGA_ANDMETES, "Saadaolev kogus ei ole broneerimiseks piisav.");
-        }
+        remainingQuantity(quantity,remainingQuantity);
     }
 
     public void validUpdateQuantity(OrderUpdateRequest request) {
         Integer quantity = request.getQuantity();
-        if (quantity < 1) {
-            throw new BusinessException(VIGA_ANDMETES, "Kogus peab olema positiivne");
-        }
+        positiveQuantity(quantity);
         BookFood order = bookFoodRepository.getById(request.getOrderId());
         ShopFood shopFood = shopFoodRepository.getById(order.getShopFood().getId());
         Integer addedQuantity = request.getQuantity() - order.getQuantity();
         Integer remainingQuantity = shopFood.getQuantity();
+        remainingQuantity(addedQuantity, remainingQuantity);
+    }
+
+    public void remainingQuantity(Integer addedQuantity, Integer remainingQuantity) {
         if (remainingQuantity < addedQuantity) {
             throw new BusinessException(VIGA_ANDMETES, "Saadaolev kogus ei ole broneerimiseks piisav. Saadaval on: " + remainingQuantity);
+        }
+    }
+
+    public void positiveQuantity(Integer quantity) {
+        if (quantity < 1) {
+            throw new BusinessException(VIGA_ANDMETES, "Kogus peab olema positiivne");
         }
     }
 
