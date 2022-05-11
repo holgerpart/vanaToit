@@ -2,6 +2,8 @@ package com.bcs.vanaToit.service.stock;
 
 import com.bcs.vanaToit.domain.food.food.ArticleService;
 import com.bcs.vanaToit.domain.food.food.FoodDto;
+import com.bcs.vanaToit.domain.food.type.TypeDto;
+import com.bcs.vanaToit.domain.food.type.TypeService;
 import com.bcs.vanaToit.domain.shop.shop.ShopDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodService;
@@ -28,6 +30,9 @@ public class StockService {
 
     @Resource
     private AuthorizedUserMapper authorizedUserMapper;
+
+    @Resource
+    private TypeService typeService;
 
     public void addArticle(ArticleRequest request) {
         articleService.addArticle(request);
@@ -77,5 +82,9 @@ public class StockService {
 
     public List<FoodDto> getArticles() {
         return articleService.getArticles();
+    }
+
+    public List<TypeDto> getTypes() {
+        return typeService.getTypes();
     }
 }

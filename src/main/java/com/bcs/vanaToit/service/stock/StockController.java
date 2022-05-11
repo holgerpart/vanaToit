@@ -1,6 +1,7 @@
 package com.bcs.vanaToit.service.stock;
 
 import com.bcs.vanaToit.domain.food.food.FoodDto;
+import com.bcs.vanaToit.domain.food.type.TypeDto;
 import com.bcs.vanaToit.domain.shop.shop.ShopDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
@@ -87,6 +88,12 @@ public class StockController {
     @Operation(summary = "Tagastab artiklite nimekirja")
     public List<FoodDto> getArticles() {
         return stockService.getArticles();
+    }
+
+    @GetMapping("/types")
+    @Operation(summary = "Tagastab kategooriate nimekirja")
+    public List<TypeDto> getTypes() {
+        return stockService.getTypes();
     }
 }
 
