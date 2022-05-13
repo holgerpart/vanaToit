@@ -7,6 +7,7 @@ import com.bcs.vanaToit.domain.shopfood.ShopFood;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodRepository;
 import com.bcs.vanaToit.domain.transaction.bookfood.BookFood;
 import com.bcs.vanaToit.domain.transaction.bookfood.BookFoodRepository;
+import com.bcs.vanaToit.domain.transaction.status.Status;
 import com.bcs.vanaToit.domain.user.user.User;
 import com.bcs.vanaToit.domain.user.user.UserRepository;
 import com.bcs.vanaToit.infrastructure.exception.BusinessException;
@@ -18,12 +19,12 @@ import com.bcs.vanaToit.service.login.UserRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class ValidationService {
 
-    public static final String VIGA_ANDMETES = "Viga andmetes";
     @Resource
     private FoodRepository foodRepository;
 
@@ -45,6 +46,8 @@ public class ValidationService {
     public static final String WITHDRAW_OVER_LIMIT = "Raha väljavõtmise limiit on ületatud";
     public static final String INSUFFICIENT_FUNDS = "Kontol pole piisavalt vahendeid tehingu sooritamiseks";
     public static final String ISIKUKOOD_ALREADY_TAKEN = "Isikukood on kasutusel";
+    public static final String VIGA_ANDMETES = "Viga andmetes";
+
 
     public void userNotExists(Optional<User> user) {
         if (user.isEmpty()) {
@@ -100,6 +103,13 @@ public class ValidationService {
         if (quantity < 1) {
             throw new BusinessException(VIGA_ANDMETES, "Kogus peab olema positiivne");
         }
+    }
+
+    public void validStatus(Status status) {
+        if (Objects.equals(status.getDescription(), "Cancelled")) {
+            throw new BusinessException(VIGA_ANDMETES, "Tühistatud tellimust ei saa avada");
+        }
+
     }
 
 //    public void accountExists(Integer accountId, Optional<Account> account) {

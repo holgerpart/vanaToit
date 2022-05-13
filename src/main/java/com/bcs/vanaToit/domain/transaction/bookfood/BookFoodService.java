@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BookFoodService {
@@ -80,8 +81,21 @@ public class BookFoodService {
 
     public void updateStatus(StatusUpdateRequest request) {
         BookFood order = bookFoodRepository.getById(request.getOrderId());
+        validationService.validStatus(order.getStatus());
         Status status = statusRepository.findByDescription(request.getStatusName());
         order.setStatus(status);
         bookFoodRepository.save(order);
+        if (Objects.equals(request.getStatusName(), "Cancelled")) {
+            cancelOrder(request, order);
+        }
+    }
+
+    private void cancelOrder(StatusUpdateRequest request, BookFood order) {
+        Integer quantity = order.getQuantity();
+        ShopFood shopFood = order.getShopFood();
+        quantity = quantity + shopFood.getQuantity();
+        shopFood.setQuantity(quantity);
+        shopFoodRepository.save(shopFood);
+
     }
 }
