@@ -2,7 +2,6 @@ package com.bcs.vanaToit.service.stock;
 
 import com.bcs.vanaToit.domain.food.food.FoodDto;
 import com.bcs.vanaToit.domain.food.type.TypeDto;
-import com.bcs.vanaToit.domain.shop.shop.ShopDto;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodDto;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,8 +19,14 @@ public class StockController {
 
     @PostMapping("/article")
     @Operation(summary = "Toidu artikli lisamine")
-    public void addFoodArticle(@RequestBody ArticleRequest request) {
+    public void addArticle(@RequestBody ArticleRequest request) {
         stockService.addArticle(request);
+    }
+
+    @GetMapping("/type")
+    @Operation(summary = "Uue kategooria lisamine")
+    public void addType(@RequestParam String typeName) {
+        stockService.addType(typeName);
     }
 
     @PostMapping

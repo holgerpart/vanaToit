@@ -21,7 +21,7 @@ public class OrderController {
     }
 
     @GetMapping("/bookfoods")
-    @Operation(summary = "/Näita kõiki broneeringuid")
+    @Operation(summary = "Näita kõiki broneeringuid")
     public List<BookFoodDto> getBookFoods() {
         return orderService.getBookFoods();
     }

@@ -2,6 +2,7 @@ package com.bcs.vanaToit.validation;
 
 
 import com.bcs.vanaToit.domain.food.food.FoodRepository;
+import com.bcs.vanaToit.domain.food.type.TypeRepository;
 import com.bcs.vanaToit.domain.shop.shop.ShopRepository;
 import com.bcs.vanaToit.domain.shopfood.ShopFood;
 import com.bcs.vanaToit.domain.shopfood.ShopFoodRepository;
@@ -39,6 +40,9 @@ public class ValidationService {
 
     @Resource
     private BookFoodRepository bookFoodRepository;
+
+    @Resource
+    private TypeRepository typeRepository;
 
     public static final String ACCOUNT_NOT_EXISTS = "Sellist kontot ei eksisteeri";
     public static final String CUSTOMER_NOT_EXISTS = "Sellist klienti ei eksisteeri";
@@ -110,6 +114,12 @@ public class ValidationService {
             throw new BusinessException(VIGA_ANDMETES, "Tühistatud tellimust ei saa avada");
         }
 
+    }
+
+    public void typeExists(String typeName) {
+        if (typeRepository.existsByName(typeName)) {
+            throw new BusinessException(VIGA_ANDMETES, "Selline kategooria on juba sisestatud");
+        }
     }
 
 //    public void accountExists(Integer accountId, Optional<Account> account) {

@@ -87,4 +87,8 @@ public class StockService {
     public List<TypeDto> getTypes() {
         return typeService.getTypes();
     }
+
+    public void addType(String typeName) {
+        typeService.addType(typeName);
+    }
 }
