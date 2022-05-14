@@ -1,5 +1,6 @@
 package com.bcs.vanaToit.service.login;
 
+import com.bcs.vanaToit.domain.shop.city.CityDto;
 import com.bcs.vanaToit.domain.shop.shop.Shop;
 import com.bcs.vanaToit.domain.shop.shop.ShopDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,6 +49,12 @@ public class LoginController {
     @Operation(summary = "Tagastab poodide nimekirja")
     public List<ShopDto> getShops() {
         return loginService.getShops();
+    }
+
+    @GetMapping("/cities")
+    @Operation(summary = "Tagastab linnade nimekirja")
+    public List<String> getCities() {
+        return loginService.getCities();
     }
 
 }

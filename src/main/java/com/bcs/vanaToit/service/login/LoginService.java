@@ -1,5 +1,7 @@
 package com.bcs.vanaToit.service.login;
 
+import com.bcs.vanaToit.domain.shop.city.CityDto;
+import com.bcs.vanaToit.domain.shop.city.CityService;
 import com.bcs.vanaToit.domain.shop.shop.ShopDto;
 import com.bcs.vanaToit.domain.shop.shop.ShopService;
 import com.bcs.vanaToit.domain.user.authorized.AuthorizedUserService;
@@ -31,6 +33,9 @@ public class LoginService {
 
     @Resource
     private ShopService shopService;
+
+    @Resource
+    private CityService cityService;
 
     public LoginResponse logIn(LoginRequest request) {
         User user = userService.getValidUser(request);
@@ -71,5 +76,9 @@ public class LoginService {
 
     public void updateShop(ShopDto request) {
         shopService.updateShop(request);
+    }
+
+    public List<String> getCities() {
+        return cityService.getCities();
     }
 }
